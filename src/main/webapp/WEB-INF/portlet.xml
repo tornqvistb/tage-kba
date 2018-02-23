@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" id="javax.portlet.GenericPortlet.dde41c52a3">
+	<portlet>
+		<portlet-name>Retursidan</portlet-name>
+		<display-name>Retursidan</display-name>
+		<display-name xml:lang="sv">Retursidan</display-name>
+		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+		<init-param>
+			<name>wps.markup</name>
+			<value>html</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+			<portlet-mode>edit</portlet-mode>
+		</supports>
+		<supported-locale>sv</supported-locale>
+		<resource-bundle>se.goteborg.retursidan.nl.Retursidan</resource-bundle>
+		<portlet-info>
+			<title>Retursidan</title>
+			<short-title>Retursidan</short-title>
+			<keywords>Retursidan</keywords>
+		</portlet-info>
+		<portlet-preferences>
+			<preference>
+				<name>useInternalResources</name>
+				<value>false</value>
+			</preference>
+			<preference>
+				<name>pageSize</name>
+				<value>10</value>
+			</preference>
+			<preference>
+				<name>imageWidth</name>
+				<value>600</value>
+			</preference>
+			<preference>
+				<name>imageHeight</name>
+				<value>600</value>
+			</preference>
+			<preference>
+				<name>thumbWidth</name>
+				<value>150</value>
+			</preference>
+			<preference>
+				<name>thumbHeight</name>
+				<value>150</value>
+			</preference>
+			<preference>
+				<name>adExpireTime</name>
+				<value>30</value>
+			</preference>
+			<preference>
+				<name>requestExpireTime</name>
+				<value>30</value>
+			</preference>
+			<preference>
+				<name>pocURIBase</name>
+				<value>/wps/myportal/int?uri=gbglnk:intranat.tage</value>
+			</preference>
+			<preference>
+				<name>rulesUrl</name>
+				<value>http://link</value>
+			</preference>
+			<preference>
+				<name>confirmCreateAdText</name>
+				<value>Jag har tillstånd från min chef att lägga ut annonsen. De praktiska detaljerna gör jag upp med den som bokar: det är den som bokar som ska ordna transport och hämta det jag annonserar ut. Det jag annonserar ut är fungerande, helt och rent.</value>
+			</preference>
+			<preference>
+				<name>confirmBookingText</name>
+				<value>Jag har tillstånd från min chef att svara på annonsen. De praktiska detaljerna gör jag upp med den som annonserar ut saken. Jag åtar mig att ordna transport och se till att hämta det jag bokat.</value>
+			</preference>
+			<preference>
+				<name>confirmRepublishText</name>
+				<value>Genom att återpublicera din annons så gör du den återigen tillgänglig för bokningar.</value>
+			</preference>
+			<preference>
+				<name>confirmRemoveRequestText</name>
+				<value>När du tar bort din efterlysning så visas den inte längre i Tage.</value>
+			</preference>
+			<preference>
+				<name>bookingConfirmationText</name>
+				<value>Du har nu fått ett mejl med kontaktuppgifter till annonsören. Ta kontakt snarast och kom överrens om hur avhämtningen ska gå till. Tänk på att det är du som bokat som har huvudansvaret för att ordna transport.</value>
+			</preference>
+			<preference>
+				<name>mailSenderAddress</name>
+				<value>tage.aterbruk@gmail.se</value>
+			</preference>
+			<preference>
+				<name>mailSubject</name>
+				<value>Annons bokad!</value>
+			</preference>
+			<preference>
+				<name>mailBody</name>
+				<value><![CDATA[
+[img src="http://varumarkesmanual.stockholm.se/sites/all/themes/jupiter/logo.png"]
+[h1]
+Annons bokad: {title}
+[/h1]
+{image}
+[p]
+[strong]Bokare:[/strong] 
+[/p]
+[p]{bookerName}[/p] 
+[p]{bookerPhone}[/p] 
+[p]{bookerMail}[/p]
+[p]
+[strong]Annonsör:[/strong] 
+[/p]
+[p]{advertiserName}[/p] 
+[p]{advertiserPhone}[/p]
+[p]{advertiserMail}[/p]
+[p]
+Klicka på länken för att gå till annonsen: {link}
+[/p]
+[p]
+Med vänliga hälsningar TAGE
+[/p]
+				]]></value>
+			</preference>
+
+			<preference>
+				<name>mailSenderAddressNewAd</name>
+				<value>tage.aterbruk@gmail.se</value>
+			</preference>
+			<preference>
+				<name>mailSubjectNewAd</name>
+				<value>Annons skapad!</value>
+			</preference>
+			<preference>
+				<name>mailBodyNewAd</name>
+				<value><![CDATA[
+[img src="http://varumarkesmanual.stockholm.se/sites/all/themes/jupiter/logo.png"]
+[h1]
+Annons skapad: {title}
+[/h1]
+{image}
+[p]
+[strong]Annonsör:[/strong] 
+[/p]
+[p]{advertiserName}[/p] 
+[p]{advertiserPhone}[/p]
+[p]{advertiserMail}[/p]
+[p]
+Klicka på länken för att gå till annonsen: {link}
+[/p]
+[p]
+Med vänliga hälsningar TAGE
+[/p]
+				]]></value>
+			</preference>
+
+			<preference>
+				<name>mailSenderAddressRequest</name>
+				<value>tage.aterbruk@gmail.se</value>
+			</preference>
+			<preference>
+				<name>mailSubjectRequest</name>
+				<value>Annons skapad!</value>
+			</preference>
+			<preference>
+				<name>mailBodyRequest</name>
+				<value><![CDATA[
+[img src="http://varumarkesmanual.stockholm.se/sites/all/themes/jupiter/logo.png"]
+[h1]
+Efterlysning besvarad: {title}
+[/h1]
+{image}
+[p]
+[strong]Meddelande:[/strong][br /] {message}
+[/p]
+[p]
+[strong]Svarande:[/strong] 
+[/p]
+[p]{respondentName}[/p] 
+[p]{respondentPhone}[/p]
+[p]{respondentMail}[/p]
+[p]
+[strong]Efterlysare:[/strong] 
+[/p]
+[p]{requesterName}[/p] 
+[p]{requesterPhone}[/p]
+[p]{requesterMail}[/p]
+[p]
+Klicka på länken för att gå till annonsen: {link}
+[/p]
+[p]
+Med vänliga hälsningar TAGE
+[/p]
+				]]></value>
+			</preference>
+
+			<preference>
+				<name>mailSenderAddressNewRequest</name>
+				<value>tage.aterbruk@gmail.se</value>
+			</preference>
+			<preference>
+				<name>mailSubjectNewRequest</name>
+				<value>Annons skapad!</value>
+			</preference>
+			<preference>
+				<name>mailBodyNewRequest</name>
+				<value><![CDATA[
+[img src="http://varumarkesmanual.stockholm.se/sites/all/themes/jupiter/logo.png"]
+[h1]
+Efterlysning skapad: {title}
+[/h1]
+{image}
+[p]
+[strong]Annonsör:[/strong] 
+[/p]
+[p]{advertiserName}[/p] 
+[p]{advertiserPhone}[/p]
+[p]{advertiserMail}[/p]
+[p]
+Klicka på länken för att gå till annonsen: {link}
+[/p]
+[p]
+Med vänliga hälsningar TAGE
+[/p]
+				]]></value>
+			</preference>
+			
+            <preference>
+                <name>capability.1.id</name>
+                <value>tage</value>
+                <read-only>true</read-only>
+            </preference>
+		</portlet-preferences>
+		<supported-public-render-parameter>externalPage</supported-public-render-parameter>
+		<supported-public-render-parameter>externalRequestId</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>Efterlysningar</portlet-name>
+		<display-name>Efterlysningar</display-name>
+		<display-name xml:lang="sv">Efterlysningar</display-name>
+		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+		<init-param>
+			<name>wps.markup</name>
+			<value>html</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<supported-locale>sv</supported-locale>
+		<resource-bundle>se.goteborg.retursidan.nl.Efterlysningar</resource-bundle>
+		<portlet-info>
+			<title>Efterlysningar</title>
+			<short-title>Efterlysningar</short-title>
+			<keywords>Efterlysningar</keywords>
+		</portlet-info>
+		<portlet-preferences>
+			<preference>
+				<name>baseURI</name>
+				<value>/web/tage-kungsbacka/annonser</value>
+			</preference>
+		</portlet-preferences>
+		<supported-public-render-parameter>externalPage</supported-public-render-parameter>
+		<supported-public-render-parameter>externalRequestId</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>Synpunkter</portlet-name>
+		<display-name>Synpunkter</display-name>
+		<display-name xml:lang="sv">Synpunkter</display-name>
+		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+		<init-param>
+			<name>wps.markup</name>
+			<value>html</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+			<portlet-mode>edit</portlet-mode>
+		</supports>
+		<supported-locale>sv</supported-locale>
+		<resource-bundle>se.goteborg.retursidan.nl.Synpunkter</resource-bundle>
+		<portlet-info>
+			<title>Synpunkter</title>
+			<short-title>Synpunkter</short-title>
+			<keywords>Synpunkter</keywords>
+		</portlet-info>
+		<portlet-preferences>
+			<preference>
+				<name>confirmationText</name>
+				<value>Tack för dina synpunkter!</value>
+			</preference>
+			<preference>
+				<name>feedbackMailReceiver</name>
+				<value>tage.info@gmail.se</value>
+			</preference>
+			<preference>
+				<name>feedbackMailSender</name>
+				<value>tage.aterbruk@gmail.se</value>
+			</preference>
+			<preference>
+				<name>feedbackMailSubject</name>
+				<value>Feedback angående TAGE</value>
+			</preference>
+			<preference>
+				<name>feedbackMailBody</name>
+				<value><![CDATA[
+[h1]
+Synpunkt avseende TAGE
+[/h1]
+[p]
+[strong]Meddelande:[/strong][br /] {message}
+[/p]
+[p]
+[strong]Lämnare av synpunkterna:[/strong]
+[/p]
+[p]{respondentName}[/p]
+[p]{respondentPhone}[/p]
+[p]{respondentMail}[/p]
+[p]
+Med vänliga hälsningar TAGE
+[/p]
+				]]></value>
+			</preference>			
+		</portlet-preferences>
+	</portlet>
+
+	<portlet>
+		<portlet-name>Bildspel</portlet-name>
+		<display-name>Bildspel</display-name>
+		<display-name xml:lang="sv">Bildspel</display-name>
+		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+		<init-param>
+			<name>wps.markup</name>
+			<value>html</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<supported-locale>sv</supported-locale>
+		<resource-bundle>se.goteborg.retursidan.nl.Bildspel</resource-bundle>
+		<portlet-info>
+			<title>Bildspel</title>
+			<short-title>Bildspel</short-title>
+			<keywords>Bildspel</keywords>
+		</portlet-info>
+		<portlet-preferences>
+			<preference>
+				<name>baseURI</name>
+				<value>/web/tage-kungsbacka/annonser</value>
+			</preference>
+		</portlet-preferences>
+	</portlet>
+
+	<custom-portlet-mode>
+		<portlet-mode>config</portlet-mode>
+	</custom-portlet-mode>
+	<filter-mapping>
+		<filter-name>OpenSessionFilter</filter-name>
+		<portlet-name>Retursidan</portlet-name>
+	</filter-mapping>
+	<default-namespace>http://retursidan-portlet/</default-namespace>
+	<public-render-parameter>
+		<identifier>externalPage</identifier>
+		<name>externalPage</name>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>externalRequestId</identifier>
+		<name>externalRequestId</name>
+	</public-render-parameter>
+</portlet-app>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 6.2.0//EN"
+  "http://www.liferay.com/dtd/liferay-portlet-app_6_2_0.dtd">
+
+<liferay-portlet-app>
+  <portlet>
+    <portlet-name>Retursidan</portlet-name>
+    <instanceable>false</instanceable>
+    <requires-namespaced-parameters>false</requires-namespaced-parameters>
+    <!-- 
+    <header-portlet-css>/external/css/tage.css</header-portlet-css>
+    <header-portlet-css>/external/css/fileuploader.css</header-portlet-css>
+  	<footer-portlet-javascript>/external/jquery/jquery-1.8.2.js</footer-portlet-javascript>
+  	<footer-portlet-javascript>/external/js/fileuploader.min.js</footer-portlet-javascript>
+  	<footer-portlet-javascript>/external/js/photo_handling.js</footer-portlet-javascript>
+  	-->
+  </portlet>
+  <portlet>
+    <portlet-name>Efterlysningar</portlet-name>
+    <instanceable>false</instanceable>
+    <requires-namespaced-parameters>false</requires-namespaced-parameters>
+    <header-portlet-css>/external/css/tage-main.css</header-portlet-css>
+  </portlet>
+  <portlet>
+    <portlet-name>Synpunkter</portlet-name>
+    <instanceable>false</instanceable>
+    <requires-namespaced-parameters>false</requires-namespaced-parameters>
+    <header-portlet-css>/external/css/tage-main.css</header-portlet-css>
+  </portlet>
+  <portlet>
+    <portlet-name>Bildspel</portlet-name>
+    <instanceable>false</instanceable>
+    <requires-namespaced-parameters>false</requires-namespaced-parameters>
+  </portlet>  
+    
+</liferay-portlet-app>

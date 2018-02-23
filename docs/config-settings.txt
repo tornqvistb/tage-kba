@@ -1,0 +1,130 @@
+Bokningsmail
+============
+Annons bokad i TAGE!
+
+[img src="http://varumarkesmanual.stockholm.se/sites/all/themes/jupiter/logo.png"]
+[h1]
+Annons bokad: {title}
+[/h1]
+{image}
+[p]
+[strong]Bokare:[/strong] {bookerName} {bookerPhone} {bookerMail}
+[/p]
+[p]
+[strong]Annonsör:[/strong] {advertiserName} {advertiserPhone} {advertiserMail}
+[/p]
+[p]
+Klicka på länken för att gå till annonsen: {link}
+[/p]
+[p]
+Med vänliga hälsningar TAGE
+[/p]
+
+
+Skapatmail
+============
+Annons skapad i TAGE!
+
+[img src="http://varumarkesmanual.stockholm.se/sites/all/themes/jupiter/logo.png"]
+[h1]
+Annons skapad: {title}
+[/h1]
+{image}
+[p]
+[strong]Annonsör:[/strong] {advertiserName} {advertiserPhone} {advertiserMail}
+[/p]
+[p]
+Klicka på länken för att gå till annonsen: {link}
+[/p]
+[p]
+Med vänliga hälsningar TAGE
+[/p]
+
+Efterlysningsmail
+============
+Efterlysning besvarad i TAGE!
+
+[img src="http://varumarkesmanual.stockholm.se/sites/all/themes/jupiter/logo.png"]
+[h1]
+Efterlysning besvarad: {title}
+[/h1]
+{image}
+[p]
+[strong]Meddelande:[/strong][br /] {message}
+[/p]
+[p]
+[strong]Svarande:[/strong] {respondentName} {respondentPhone} {respondentMail}
+[/p]
+[p]
+[strong]Efterlysare:[/strong] {requesterName} {requesterPhone} {requesterMail}
+[/p]
+[p]
+Klicka på länken för att gå till annonsen: {link}
+[/p]
+[p]
+Med vänliga hälsningar TAGE
+[/p]
+
+
+Content på startsida
+====================
+
+Stor orange box t vänster:
+<div class="large-box dark-orange-box">
+<h1>Välkommen till TAGE Återbrukstjänst!</h1>
+
+<p>Här kan du annonsera ut möbler och inventarier som inte behövs i er verksamhet. Saker som kan komma till användning i någan annan verksamhet i Staden.</p>
+
+<p>Du kan också göra efterlysningar om sånt ni behöver på er arbetsplats.</p>
+</div>
+
+Bildbox:
+<a href="/web/tage/annonser"><img alt="" src="/documents/23909/0/matta.jpg/95780910-1604-4931-b62e-729b6f198363?t=1476450693632" /></a>
+
+Annons/efterlysningsbox:
+<div class="dark-pink-box medium-box">
+<h2><a class="page-link" href="/web/tage/annonser">Sök möbler och inventarier!</a></h2>
+
+<h2><a href="/web/tage/annonser">Gör efterlysning!</a></h2>
+</div>
+
+Tänk nytt-box:
+<div class="medium-box light-pink-box">
+<h2><a href="/web/tage/tips">Tänk nytt!</a></h2>
+
+<p>Här kan du få tips och råd om hur du återanvänder begagnade möbler och andra saker.</p>
+</div>
+
+Tjänster-box:
+<div class="medium-box light-pink-box">
+<h2><a href="/web/tage/tjanster">I TAGE återbruk ingår tjänsterna:</a></h2>
+
+<ul>
+	<li>Transport</li>
+	<li>Inventering</li>
+	<li>Annonsering</li>
+	<li>Reparation</li>
+</ul>
+</div>
+
+Regler-box:
+<div class="medium-box dark-orange-box">
+<h2><a href="/web/tage/regler">Regler</a></h2>
+
+<p>På TAGE kan stadens möbler och vissa andra inventarier öäverlåtas mellan olika verksamheter. Läs mer om vilka regfler som gäller.</p>
+</div>
+
+
+Tycktill-box:
+<div class="medium-box dark-pink-box">
+<h2><a href="/web/tage/tycktill">Tyck till</a></h2>
+
+<p>Här kan du lämna synpunkter på hur du tycker att TAGE fungerar! Du kan också bidra med förslag på hur tjänsten kan utvecklas!</p>
+</div>
+
+Support-box:
+<div class="medium-box light-orange-box">
+<h2><a href="/web/tage/support">Vänd dig till supporten för hjälp!</a></h2>
+
+<p>Kontaktuppgifter till projekt TAGE finns här!</p>
+</div>

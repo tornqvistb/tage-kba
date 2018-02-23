@@ -1,0 +1,16 @@
+	
+	#thumbnails div{
+		margin: 2px;
+		float: left;		
+	}
+	.qq-upload-button {
+	    display: block;
+		text-align: center;
+		width:85px;
+		border:1px solid #ccc;
+		-moz-border-radius:3px;
+		-webkit-border-radius:3px;
+		border-radius:3px;
+		padding:6px 15px;
+		font-weight:bold;
+	}

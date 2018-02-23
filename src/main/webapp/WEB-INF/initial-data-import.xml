@@ -1,0 +1,69 @@
+<!-- 
+	Data used for initial import if the corresponding tables are empty in the database.
+	This file is read by the InitController. Used instead of the import.sql because this import
+	will work independently of selected database dialect, since it is persisted using the Hibernate
+	framework instead of being executed directly as SQL statements.
+ -->
+<import>
+	<units>
+		<unit>Angered</unit>
+		<unit>Askim-Frölunda-Högsbo</unit>
+		<unit>Centrum</unit>
+		<unit>Lundby</unit>
+		<unit>Majorna-Linné</unit>
+		<unit>Norra Hisingen</unit>
+		<unit>Trafikkontoret</unit>
+		<unit>Västra Göteborg</unit>
+		<unit>Västra Hisingen</unit>
+		<unit>Örgryte-Härlanda</unit>
+		<unit>Östra Göteborg</unit>
+	</units>
+
+	<categories>
+		<category>
+			<title>Möbler</title>
+			<subcategories>
+				<category>
+					<title>Skrivbord</title>
+				</category>			
+				<category>
+					<title>Stolar</title>
+				</category>			
+				<category>
+					<title>Hyllor</title>
+				</category>			
+				<category>
+					<title>Övrigt</title>
+				</category>					
+			</subcategories>
+		</category>
+		<category>
+			<title>Verktyg</title>
+			<subcategories>
+				<category>
+					<title>Handverktyg</title>
+				</category>			
+				<category>
+					<title>Elhandverktyg</title>
+				</category>			
+				<category>
+					<title>Övrigt</title>
+				</category>							
+			</subcategories>
+		</category>
+		<category>
+			<title>IT-utrustning</title>
+			<subcategories>
+				<category>
+					<title>Skrivare/fax</title>
+				</category>			
+				<category>
+					<title>Bildskärmar</title>
+				</category>			
+				<category>
+					<title>Övrigt</title>
+				</category>							
+			</subcategories>
+		</category>
+	</categories>
+</import>
