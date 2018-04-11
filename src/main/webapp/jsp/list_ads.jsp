@@ -56,11 +56,16 @@
 				</form:select>
 			</div>
 		</div>
-		<div class="row cols-1 cf">
-			<div class="col small col-1 submit-area">
-				<input type="submit" value="Visa" name="submit-508e6b767c18f">
+		<div class="row cols-2 cf">		 
+			<div class="text col large col-1">
+				<label for="filter-search-string">Sökord</label>
+				<form:input path="searchString" id="filter-search-string" placeholder="Ange valfria sökord"/>
+			</div>
+			<div class="col small col-2">
+				<input type="submit" class="search-button tage-search-button" value="Visa" name="submit-508e6b767c18f">
 			</div>
 		</div>
+		
 	</form:form>
 	<h2><span id="headerTitle">Alla annonser</span></h2>
 	<c:if test="${fn:length(ads.list) gt 0}">

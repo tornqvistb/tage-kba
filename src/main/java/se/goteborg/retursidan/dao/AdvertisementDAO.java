@@ -1,13 +1,18 @@
 package se.goteborg.retursidan.dao;
 
+import static org.hibernate.criterion.Restrictions.eq;
+import static org.hibernate.criterion.Restrictions.like;
+import static org.hibernate.criterion.Restrictions.or;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
-import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -17,9 +22,9 @@ import se.goteborg.retursidan.model.PagedList;
 import se.goteborg.retursidan.model.entity.Advertisement;
 import se.goteborg.retursidan.model.entity.Advertisement.Status;
 import se.goteborg.retursidan.model.entity.Category;
-import se.goteborg.retursidan.model.entity.Person;
 import se.goteborg.retursidan.model.entity.Photo;
 import se.goteborg.retursidan.model.entity.Unit;
+import se.goteborg.retursidan.util.StringFormatter;
 
 /**
  * Data access object for the Advertisement entity objects
@@ -65,7 +70,7 @@ public class AdvertisementDAO extends BaseDAO<Advertisement> {
 	 * @return a PagedList containing the results
 	 */
 	@SuppressWarnings("unchecked")
-	public PagedList<Advertisement> find(String creatorUid, Status status, Category topCategory, Category category, Unit unit, String bookerUid, boolean usingDisplayOption, int page, int pageSize) {
+	public PagedList<Advertisement> find(String creatorUid, Status status, Category topCategory, Category category, Unit unit, String bookerUid, String searchString, boolean usingDisplayOption, int page, int pageSize) {
 		Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Advertisement.class, "a");
 		if (creatorUid != null) {
 			criteria.add(Restrictions.eq("creatorUid", creatorUid));
@@ -83,6 +88,32 @@ public class AdvertisementDAO extends BaseDAO<Advertisement> {
 			criteria.add(Restrictions.eq("unit", unit));
 		} else if (usingDisplayOption){
 			criteria.add(Restrictions.eq("displayOption", Advertisement.DisplayOption.ENTIRE_CITY));
+		}
+		
+		// Search string
+		if (StringUtils.isNotEmpty(searchString)) {
+			String[] searchParts = searchString.split(" ");
+			criteria.createAlias("a.contact", "c");
+			for (String part : searchParts) {
+				part = part.trim();
+				Criterion likeTitle = like("title", "%" + part + "%").ignoreCase();
+				Criterion likeDescription = like("description", "%" + part + "%").ignoreCase();
+				Criterion likeCreatorUid = like("creatorUid", "%" + part + "%").ignoreCase();				
+				Criterion likeContactName = like("c.name", "%" + part + "%").ignoreCase();
+				Criterion likeContactPhone = like("c.phone", "%" + part + "%").ignoreCase();
+				Criterion likeContactEmail = like("c.email", "%" + part + "%").ignoreCase();
+				Criterion likePickupAddress = like("pickupAddress", "%" + part + "%").ignoreCase();
+				Criterion likePickupConditions = like("pickupConditions", "%" + part + "%").ignoreCase();
+				Criterion equalsID;
+				if (StringFormatter.isInteger(part)) {
+					equalsID = eq("id", Integer.parseInt(part));
+				} else {
+					equalsID = eq("id", -1);
+				}
+							
+				criteria.add(or(likeTitle, likeDescription, likeCreatorUid, likeContactName, 
+						likeContactPhone, likeContactEmail, likePickupAddress, likePickupConditions, equalsID));
+			}
 		}
 		
 		// Booker UID

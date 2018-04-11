@@ -17,6 +17,7 @@ public class SearchFilter extends GeneralModelBean {
 	private Category subCategory;
 	private Unit unit;
 	private Status status;
+	private String searchString;	
 
 	public Status getStatus() {
 		return status;
@@ -42,4 +43,10 @@ public class SearchFilter extends GeneralModelBean {
 	public void setUnit(Unit unit) {
 		this.unit = unit;
 	}
+	public String getSearchString() {
+		return searchString;
+	}
+	public void setSearchString(String searchString) {
+		this.searchString = searchString;
+	}	
 }

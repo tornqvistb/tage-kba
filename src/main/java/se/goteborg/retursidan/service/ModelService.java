@@ -96,23 +96,23 @@ public class ModelService {
 	public Advertisement getAdvertisement(int id) {
 		return advertisementDAO.findById(id);
 	}
-	public PagedList<Advertisement> getAllFilteredAdvertisements(Advertisement.Status status, Category topCategory, Category category, Unit unit, int page, int pageSize) {
-		return advertisementDAO.find(null, status, topCategory, category, unit, null, false, page, pageSize);
+	public PagedList<Advertisement> getAllFilteredAdvertisements(Advertisement.Status status, Category topCategory, Category category, Unit unit, String searchString, int page, int pageSize) {
+		return advertisementDAO.find(null, status, topCategory, category, unit, null, searchString, false, page, pageSize);
 	}
 	public PagedList<Advertisement> getAllAdvertisements(Advertisement.Status status, int page, int pageSize) {
-		return advertisementDAO.find(null, status, null, null, null, null, true, page, pageSize);
+		return advertisementDAO.find(null, status, null, null, null, null, null, true, page, pageSize);
 	}
 	public PagedList<Advertisement> getAllAdvertisementsForUid(String uid, int page, int pageSize) {
-		return advertisementDAO.find(uid, null, null, null, null, null, false, page, pageSize);
+		return advertisementDAO.find(uid, null, null, null, null, null, null, false, page, pageSize);
 	}
 	public PagedList<Advertisement> getAllBookingsForUid(String uid, int page, int pageSize) {
-		return advertisementDAO.find(null, null, null, null, null, uid, false, page, pageSize);
+		return advertisementDAO.find(null, null, null, null, null, uid, null, false, page, pageSize);
 	}
 	public PagedList<Advertisement> getAllFilteredAdvertisementsForUid(String uid, Category topCategory, Category category, Unit unit, Status status, int page, int pageSize) {
-		return advertisementDAO.find(uid, status, topCategory, category, unit, null, false, page, pageSize);
+		return advertisementDAO.find(uid, status, topCategory, category, unit, null, null, false, page, pageSize);
 	}
 	public PagedList<Advertisement> getAllFilteredBookingsForUid(String uid, Category topCategory, Category category, int page, int pageSize) {
-		return advertisementDAO.find(null, null, topCategory, category, null, uid, false, page, pageSize);
+		return advertisementDAO.find(null, null, topCategory, category, null, uid, null, false, page, pageSize);
 	}
 	
 	public void removeAdvertisement(Advertisement advertisement) {

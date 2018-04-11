@@ -10,6 +10,7 @@
 <script src="<%= renderResponse.encodeURL(renderRequest.getContextPath() +  "/external/js/photo_handling.js")%>" type="text/javascript"></script>
 <script src="<%= renderResponse.encodeURL(renderRequest.getContextPath() +  "/external/js/fileuploader.js")%>" type="text/javascript"></script>
 <link rel="stylesheet" href="<%= renderResponse.encodeURL(renderRequest.getContextPath() +  "/external/css/fileuploader.css")%>" type="text/css" />
+<link rel="stylesheet" href="<%= renderResponse.encodeURL(renderRequest.getContextPath() +  "/external/css/tage-custom.css")%>" type="text/css" />
 <%--<link rel="stylesheet" href="<%= renderResponse.encodeURL(renderRequest.getContextPath() +  "/external/css/tage-main.css")%>" type="text/css" /> --%>
 <%--<link rel="stylesheet" href="<%= renderResponse.encodeURL(renderRequest.getContextPath() +  "/external/css/tage.css")%>" type="text/css" />--%>
  
