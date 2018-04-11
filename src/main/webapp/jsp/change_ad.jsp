@@ -91,6 +91,13 @@
 			</div>
 		</div>
 		<div class="row cols-1 cf">
+			<c:set var="err"><form:errors path="count"/></c:set> 
+			<div class="text col small col-1 mandatory <%= bindingResult.hasFieldErrors("count") ? "error" : "" %>">
+				<label for="5086c4a3b2123">Antal <em>(obligatoriskt)</em> <strong><form:errors path="count"/></strong></label>
+				<form:input path="count" id="5086c4a3b2123" type="number"/>
+			</div>
+		</div>				
+		<div class="row cols-1 cf">
 			<div class="col hr col-1">
 				<hr>
 			</div>

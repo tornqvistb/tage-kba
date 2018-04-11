@@ -43,7 +43,12 @@ public class AdValidator implements Validator {
 		ValidationUtils.invokeValidator(personValidator, ad.getContact(), errors);
 
 		ValidationUtils.rejectIfEmpty(errors, "pickupAddress", "pickupAddress.missing");
-		
+
+		ValidationUtils.rejectIfEmpty(errors, "count", "count.missing");
+		if (ad.getCount() != null && ad.getCount() <= 0) {
+			errors.rejectValue("count", "count.mustbegreaterthanzero");
+		}
+
 		if (errors.hasErrors()) {
 			logger.log(Level.FINE, errors.toString());
 		}

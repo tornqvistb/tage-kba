@@ -91,6 +91,9 @@ public class Advertisement extends GeneralEntityBean implements Serializable {
 	@DateTimeFormat(style="SS")
 	private Date publishDate = DateHelper.getCurrentDate();
 	
+	@Column(nullable=true)
+	private Integer count;
+	
 	/**
 	 * Fetch the photos lazy, we do not want to load the actual image data for each photo
 	 */
@@ -231,6 +234,14 @@ public class Advertisement extends GeneralEntityBean implements Serializable {
 
 	public void setPublishDate(Date publishDate) {
 		this.publishDate = publishDate;
+	}
+	
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 
 	@Override
