@@ -228,6 +228,9 @@ public class Advertisement extends GeneralEntityBean implements Serializable {
 	public Date getPublishDate() {
 		return publishDate;
 	}
+	public String getShortPublishDate() {
+		return StringFormatter.formatDateToDay(publishDate);
+	}
 	public String getFormattedPublishDate() {
 		return StringFormatter.formatShortDate(publishDate);
 	}

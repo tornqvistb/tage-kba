@@ -17,6 +17,14 @@
 
 
 <c:if test="${not empty advertisement}">
+	<input id="advertisment-id" type="hidden" value="${advertisement.id}" />	
+	<input id="advertisment-title" type="hidden" value="${advertisement.title}" />
+	<input id="advertisment-publishdate" type="hidden" value="${advertisement.shortPublishDate}" />
+	<c:if test="${advertisement.booked}">
+		<input id="booker-name" type="hidden" value="${advertisement.booker.name}" />
+		<input id="booker-phone" type="hidden" value="${advertisement.booker.phone}" />
+		<input id="booker-mail" type="hidden" value="${advertisement.booker.email}" />
+	</c:if>	
 	<div id="content-primary" class="article cf" role="main">
 		<div class="content-header cf">
 			<a href="${backUrl}" class="button">Tillbaka</a>
@@ -111,6 +119,7 @@
 					</portlet:renderURL>
 					<a href="${unpublishAdUrl}" class="button">Avpublicera annonsen</a>					
 				</c:if>
+				<a onclick="PrintLabels()" class="button">Skriv ut</a>
 			</c:if>
 		</div>
 		<a href="<portlet:renderURL>

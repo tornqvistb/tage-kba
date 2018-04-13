@@ -33,6 +33,15 @@ public class StringFormatter {
 	    }
 	}
 
+	public static String formatDateToDay(Date created) {
+		Calendar date = Calendar.getInstance();
+	    date.setTime(created);
+	    
+	    DateFormat yearDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+	    
+	    return yearDateFormatter.format(created);	    
+	}
+	
 	public static boolean isInteger( String input ) {
 	    try {
 	        Integer.parseInt( input );
