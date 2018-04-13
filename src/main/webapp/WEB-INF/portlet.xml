@@ -57,7 +57,7 @@
 			</preference>
 			<preference>
 				<name>pocURIBase</name>
-				<value>/wps/myportal/int?uri=gbglnk:intranat.tage</value>
+				<value>/web/atervinsten/annonser</value>
 			</preference>
 			<preference>
 				<name>rulesUrl</name>
@@ -115,7 +115,7 @@ Annons bokad: {title}
 Klicka på länken för att gå till annonsen: {link}
 [/p]
 [p]
-Med vänliga hälsningar TAGE
+Med vänliga hälsningar Återvinsten
 [/p]
 				]]></value>
 			</preference>
@@ -146,7 +146,7 @@ Annons skapad: {title}
 Klicka på länken för att gå till annonsen: {link}
 [/p]
 [p]
-Med vänliga hälsningar TAGE
+Med vänliga hälsningar Återvinsten
 [/p]
 				]]></value>
 			</preference>
@@ -186,7 +186,7 @@ Efterlysning besvarad: {title}
 Klicka på länken för att gå till annonsen: {link}
 [/p]
 [p]
-Med vänliga hälsningar TAGE
+Med vänliga hälsningar Återvinsten
 [/p]
 				]]></value>
 			</preference>
@@ -217,10 +217,78 @@ Efterlysning skapad: {title}
 Klicka på länken för att gå till annonsen: {link}
 [/p]
 [p]
-Med vänliga hälsningar TAGE
+Med vänliga hälsningar Återvinsten
 [/p]
 				]]></value>
 			</preference>
+			<preference>
+				<name>mailSenderAddressExpireAd</name>
+				<value>tage.aterbruk@gmail.se</value>
+			</preference>
+			<preference>
+				<name>mailSubjectExpireAd</name>
+				<value>Annons utgången!</value>
+			</preference>
+			<preference>
+				<name>mailBodyExpiredAd</name>
+				<value><![CDATA[
+				
+[h1]
+Annons utgången: {title}
+[/h1]
+{image}				
+
+[p]
+Annonsen har nu legat ute i {publishedDays} dagar och tas nu bort från Återvinsten. 
+Du kan välja att återpublicera annonsen eller ringa/kontakta Återbruket för att få din möbel hämtad.
+Återpublicering sker under Mina annonser i Tage.
+[/p]
+[p]
+[strong]Annonsör:[/strong] 
+[/p]
+[p]{advertiserName}[/p] 
+[p]{advertiserPhone}[/p]
+[p]{advertiserMail}[/p]
+[p]
+Med vänliga hälsningar Återvinsten
+[/p]
+				]]></value>
+			</preference>
+
+			<preference>
+				<name>mailSenderAddressExpireRequest</name>
+				<value>tage.aterbruk@gmail.se</value>
+			</preference>
+			<preference>
+				<name>mailSubjectExpireRequest</name>
+				<value>Efterlysning utgången!</value>
+			</preference>
+			<preference>
+				<name>mailBodyExpiredRequest</name>
+				<value><![CDATA[
+				
+[h1]
+Efterlysning utgången: {title}
+[/h1]
+{image}				
+[p]
+Efterlysningen har nu legat ute i {publishedDays} dagar och tas nu bort från Återvinsten. 
+Det du efterlyser kan finnas hos Magasinet till en lägre kostnad än om du köper in det nytt. 
+Kommunen kan köpa saker second hand från följande ställen...
+[/p]
+
+[p]
+[strong]Annonsör:[/strong] 
+[/p]
+[p]{advertiserName}[/p] 
+[p]{advertiserPhone}[/p]
+[p]{advertiserMail}[/p]
+[p]
+Med vänliga hälsningar Återvinsten
+[/p]
+				]]></value>
+			</preference>
+
 			
             <preference>
                 <name>capability.1.id</name>

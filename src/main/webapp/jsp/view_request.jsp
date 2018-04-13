@@ -26,7 +26,7 @@
 		<div class="inventory-info">		
 			<p class="meta"><span class="date">${request.formattedCreatedDate}</span> | <span class="category">${request.category.parent.title} <span class="sep">&gt;</span> ${request.category.title}</span></p>
 			<p class="meta">Efterlyses av <strong>${request.unit.name}</strong></p>
-			<p>${request.description}</p>
+			<p>${request.descriptionDisplay}</p>
 			<c:if test="${fn:length(request.photos) ne 0}">
 				<div class="flexslider">
 					<ul class="slides cf">

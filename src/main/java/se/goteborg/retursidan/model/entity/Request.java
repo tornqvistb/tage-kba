@@ -63,6 +63,9 @@ public class Request extends GeneralEntityBean implements Serializable {
 	@ManyToOne(optional=false)
 	private Unit unit;
 	
+	@DateTimeFormat(style = "SS")
+	@Column(nullable = false)
+	private Date publishDate = new Date();
 	/**
 	 * Fetch the photos lazy, we do not want to load the actual image data for each photo
 	 */
@@ -141,5 +144,18 @@ public class Request extends GeneralEntityBean implements Serializable {
 	public void setPhotos(List<Photo> photos) {
 		this.photos = photos;
 	}
-
+    public Date getPublishDate() {
+        return publishDate;
+    }
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
+    }
+    @Transient
+	public String getDescriptionDisplay() {
+		if (description != null) {
+			return description.replaceAll("\n", "<br />");
+		} else {
+			return "";
+		} 
+	}
 }

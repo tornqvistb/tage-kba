@@ -1,4 +1,7 @@
-	package se.goteborg.retursidan.dao;
+package se.goteborg.retursidan.dao;
+
+import static org.hibernate.criterion.Restrictions.eq;
+import static org.hibernate.criterion.Restrictions.le;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,7 +16,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import se.goteborg.retursidan.model.PagedList;
-import se.goteborg.retursidan.model.entity.Advertisement;
 import se.goteborg.retursidan.model.entity.Category;
 import se.goteborg.retursidan.model.entity.Photo;
 import se.goteborg.retursidan.model.entity.Request;
@@ -186,5 +188,21 @@ public class RequestDAO extends BaseDAO<Request> {
 		return ((Number) query.uniqueResult()).intValue();
 	}
 
+	/**
+     * Finds all requests that have expired and are to be unpublished.
+     * 
+     * @param days
+     * @return list of requests that have expired.
+     */
+    @SuppressWarnings("unchecked")
+    public List<Request> findRequestsToExpire(int days) {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_YEAR, -days);
+        Date maxDate = cal.getTime();
+        Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Request.class);
+        criteria.add(eq("status", Status.PUBLISHED));
+        criteria.add(le("publishDate", maxDate));
+        return criteria.list();
+    }
 	
 }

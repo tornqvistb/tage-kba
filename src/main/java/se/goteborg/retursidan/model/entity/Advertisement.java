@@ -253,4 +253,14 @@ public class Advertisement extends GeneralEntityBean implements Serializable {
 				+ ", pickupConditions=" + pickupConditions + ", displayOption=" + displayOption + ", publishDate="
 				+ publishDate + ", photos=" + photos + "]";
 	}
+
+	@Transient
+	public String getDescriptionDisplay() {
+		if (description != null) {
+			return description.replaceAll("\n", "<br />");
+		} else {
+			return "";
+		} 
+	}
+
 }

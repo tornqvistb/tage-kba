@@ -52,7 +52,7 @@
 			</c:if>						
 			<p class="meta"><span class="date">${advertisement.formattedCreatedDate}</span> | <span class="category">${advertisement.category.parent.title} <span class="sep">&gt;</span> ${advertisement.category.title}</span> | <span class="${statusClass}">${statusTitle}</span></p>
 			<p class="meta">Bortskänkes av <strong>${advertisement.unit.name}</strong></p>
-			<p>${advertisement.description}</p>
+			<p>${advertisement.descriptionDisplay}</p>
 			<p class="meta">Antal: <strong>${advertisement.count}</strong></p>
 			<h2>Information om hämtning</h2>
 			<div class="info-box">

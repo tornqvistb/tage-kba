@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.portlet.handler.HandlerInterceptorAdapter;
 
 import se.goteborg.retursidan.model.form.Config;
+import se.goteborg.retursidan.model.form.Texts;
 import se.goteborg.retursidan.service.ExpireService;
 
 /**
@@ -33,8 +34,9 @@ public class ExpireInterceptor extends HandlerInterceptorAdapter {
 			if (lastRun < (System.currentTimeMillis() - INTERVAL) ) {
 				lastRun = System.currentTimeMillis();
 				Config config = new Config(request.getPreferences());
-				expireService.expireAds(config.getAdExpireTimeInt());
-				expireService.expireRequests(config.getRequestExpireTimeInt());
+				Texts texts = new Texts(request.getPreferences());
+				expireService.expireAds(config.getAdExpireTimeInt(), texts, request);
+				expireService.expireRequests(config.getRequestExpireTimeInt(), texts, request);
 			}
 		}
 		return super.preHandleRender(request, response, handler);

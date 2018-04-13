@@ -34,6 +34,11 @@ public class MailComposition {
 		this.rulesUrl = rulesUrl;		
 		this.logoUrl = logoUrl;
 	}
+	
+	public MailComposition() {
+        super();
+    }
+	
 	private Photo photo;
 	private String senderAdress;
 	private String[] reveiverAdress;
@@ -52,11 +57,13 @@ public class MailComposition {
 	private String requesterName;
 	private String requesterPhone;
 	private String requesterMail;
-	private String message;
 	private String link;
 	private String configMailBody;
 	private String rulesUrl;
 	private String logoUrl;
+	private String message = "";
+	private int id;
+	private int publishedDays;
 	
 	public Photo getPhoto() {
 		return photo;
@@ -195,7 +202,19 @@ public class MailComposition {
 	}
 	public void setLogoUrl(String logoUrl) {
 		this.logoUrl = logoUrl;
+	}	
+	public int getPublishedDays() {
+        return publishedDays;
+    }
+    public void setPublishedDays(int publishedDays) {
+        this.publishedDays = publishedDays;
+    }
+
+	public int getId() {
+		return id;
 	}
-	
-	
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

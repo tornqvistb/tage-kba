@@ -228,6 +228,73 @@
 				<form:textarea path="mailBodyNewRequest" id="mailBodyInputNewRequest" cols="50" rows="15"/>
 			</div>
 		</div>
+
+		
+		<div class="row cols-1 cf">
+			<div class="col hr col-1">
+				<hr>
+			</div>
+		</div>
+		
+		<p>Epost-utskick vid utgångna annonser</p>
+		<div class="row cols-1 cf">
+			<c:set var="err"><form:errors path="mailSenderAddressExpiredAd"/></c:set> 
+			<div class="text col large col-1 mandatory <%= bindingResult.hasFieldErrors("mailSenderAddressExpiredAd") ? "error" : "" %>">
+				<label for="mailSenderAddressExpiredAdInput">Avsändare <strong><form:errors path="mailSenderAddressExpiredAd"/></strong></label>
+				<form:input path="mailSenderAddressExpiredAd" id="mailSenderAddressExpiredAdInput"/>
+			</div>
+		</div>
+		<div class="row cols-1 cf">
+			<c:set var="err"><form:errors path="mailSubjectExpiredAd"/></c:set> 
+			<div class="text col large col-1 mandatory <%= bindingResult.hasFieldErrors("mailSubjectExpiredAd") ? "error" : "" %>">
+				<label for="mailSubjectExpiredAdInput">Rubrik<strong><form:errors path="mailSubjectExpiredAd"/></strong></label>
+				<form:input path="mailSubjectExpiredAd" id="mailSubjectExpiredAdInput"/>
+			</div>
+		</div>
+		<p>Följande ersättningsfält kan du använda i innehållstexten, de byts ut mot motsvarande text när epost-meddelandet skapas:<br/>
+		Annonsens rubrik: <strong>{title}</strong>, annonsörens namn: <strong>{advertiserName}</strong>, 
+		annonsörens telefon: <strong>{advertiserPhone}</strong>, annonsörens epost-adress: <strong>{advertiserMail}</strong>,
+		annonsens id: <strong>{id}</strong> och antal dagar sedan annonsen publicerades <strong>{publishedDays}</strong>.</p>		
+		<div class="row cols-1 cf">
+			<c:set var="err"><form:errors path="mailBodyExpiredAd"/></c:set> 
+			<div class="text col large col-1 mandatory <%= bindingResult.hasFieldErrors("mailBodyExpiredAd") ? "error" : "" %>">
+				<label for="mailBodyExpiredAdInput">Innehåll <strong><form:errors path="mailBodyExpiredAd"/></strong></label>
+				<form:textarea path="mailBodyExpiredAd" id="mailBodyExpiredAdInput" cols="50" rows="15"/>
+			</div>
+		</div>		
+
+		<div class="row cols-1 cf">
+			<div class="col hr col-1">
+				<hr>
+			</div>
+		</div>
+
+		<p>Epost-utskick vid utgångna efterlysningar</p>
+		<div class="row cols-1 cf">
+			<c:set var="err"><form:errors path="mailSenderAddressExpiredRequest"/></c:set> 
+			<div class="text col large col-1 mandatory <%= bindingResult.hasFieldErrors("mailSenderAddressExpiredRequest") ? "error" : "" %>">
+				<label for="mailSenderAddressExpiredRequestInput">Avsändare <strong><form:errors path="mailSenderAddressExpiredRequest"/></strong></label>
+				<form:input path="mailSenderAddressExpiredRequest" id="mailSenderAddressExpiredRequestInput"/>
+			</div>
+		</div>
+		<div class="row cols-1 cf">
+			<c:set var="err"><form:errors path="mailSubjectExpiredRequest"/></c:set> 
+			<div class="text col large col-1 mandatory <%= bindingResult.hasFieldErrors("mailSubjectExpiredRequest") ? "error" : "" %>">
+				<label for="mailSubjectExpiredRequestInput">Rubrik<strong><form:errors path="mailSubjectExpiredRequest"/></strong></label>
+				<form:input path="mailSubjectExpiredRequest" id="mailSubjectExpiredRequestInput"/>
+			</div>
+		</div>
+		<p>Följande ersättningsfält kan du använda i innehållstexten, de byts ut mot motsvarande text när epost-meddelandet skapas:<br/>
+		Efterlysningens rubrik: <strong>{title}</strong>, annonsörens namn: <strong>{advertiserName}</strong>, 
+		annonsörens telefon: <strong>{advertiserPhone}</strong>, annonsörens epost-adress: <strong>{advertiserMail}</strong>,
+		efterlysningens id: <strong>{id}</strong> och antal dagar sedan efterlysningen publicerades <strong>{publishedDays}</strong>.</p>		
+		<div class="row cols-1 cf">
+			<c:set var="err"><form:errors path="mailBodyExpiredRequest"/></c:set> 
+			<div class="text col large col-1 mandatory <%= bindingResult.hasFieldErrors("mailBodyExpiredRequest") ? "error" : "" %>">
+				<label for="mailBodyExpiredRequestInput">Innehåll <strong><form:errors path="mailBodyExpiredRequest"/></strong></label>
+				<form:textarea path="mailBodyExpiredRequest" id="mailBodyExpiredRequestInput" cols="50" rows="15"/>
+			</div>
+		</div>		
 				
 		<div class="row cols-1 cf">
 			<div class="col medium col-1 submit-area">

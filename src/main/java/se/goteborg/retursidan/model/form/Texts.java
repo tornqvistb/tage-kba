@@ -29,7 +29,13 @@ public class Texts extends GeneralModelBean {
 	private String mailBodyRequest;
 	private String mailSenderAddressNewRequest;
 	private String mailSubjectNewRequest;
-	private String mailBodyNewRequest;	
+	private String mailBodyNewRequest;
+    private String mailSenderAddressExpiredAd;
+    private String mailSubjectExpiredAd;
+    private String mailBodyExpiredAd;
+    private String mailSenderAddressExpiredRequest;
+    private String mailSubjectExpiredRequest;
+    private String mailBodyExpiredRequest;
 
 	public Texts() {
 	}
@@ -53,6 +59,12 @@ public class Texts extends GeneralModelBean {
 		this.mailSenderAddressNewRequest = prefs.getValue("mailSenderAddressNewRequest", "tage@goteborg.se");
 		this.mailSubjectNewRequest = prefs.getValue("mailSubjectNewRequest", "Efterlysning skapad!");
 		this.mailBodyNewRequest = prefs.getValue("mailBodyNewRequest", "");
+		this.mailSenderAddressExpiredAd = prefs.getValue("mailSenderAddressExpiredAd", "tage@goteborg.se");
+		this.mailSubjectExpiredAd = prefs.getValue("mailSubjectExpiredAd", "Annons utgången!");
+		this.mailBodyExpiredAd = prefs.getValue("mailBodyExpiredAd", "");
+		this.mailSenderAddressExpiredRequest = prefs.getValue("mailSenderAddressExpiredRequest", "tage@goteborg.se");
+		this.mailSubjectExpiredRequest = prefs.getValue("mailSubjectExpiredRequest", "Efterlysning utgången!");
+		this.mailBodyExpiredRequest = prefs.getValue("mailBodyExpiredRequest", "");
 	}
 
 	public String getConfirmCreateAdText() {
@@ -197,5 +209,53 @@ public class Texts extends GeneralModelBean {
 
 	public void setMailSenderAddressNewRequest(String mailSenderAddressNewRequest) {
 		this.mailSenderAddressNewRequest = mailSenderAddressNewRequest;
+	}
+
+	public String getMailSenderAddressExpiredAd() {
+		return mailSenderAddressExpiredAd;
+	}
+
+	public void setMailSenderAddressExpiredAd(String mailSenderAddressExpiredAd) {
+		this.mailSenderAddressExpiredAd = mailSenderAddressExpiredAd;
+	}
+
+	public String getMailSubjectExpiredAd() {
+		return mailSubjectExpiredAd;
+	}
+
+	public void setMailSubjectExpiredAd(String mailSubjectExpiredAd) {
+		this.mailSubjectExpiredAd = mailSubjectExpiredAd;
+	}
+
+	public String getMailBodyExpiredAd() {
+		return mailBodyExpiredAd;
+	}
+
+	public void setMailBodyExpiredAd(String mailBodyExpiredAd) {
+		this.mailBodyExpiredAd = mailBodyExpiredAd;
+	}
+
+	public String getMailSenderAddressExpiredRequest() {
+		return mailSenderAddressExpiredRequest;
+	}
+
+	public void setMailSenderAddressExpiredRequest(String mailSenderAddressExpiredRequest) {
+		this.mailSenderAddressExpiredRequest = mailSenderAddressExpiredRequest;
+	}
+
+	public String getMailSubjectExpiredRequest() {
+		return mailSubjectExpiredRequest;
+	}
+
+	public void setMailSubjectExpiredRequest(String mailSubjectExpiredRequest) {
+		this.mailSubjectExpiredRequest = mailSubjectExpiredRequest;
+	}
+
+	public String getMailBodyExpiredRequest() {
+		return mailBodyExpiredRequest;
+	}
+
+	public void setMailBodyExpiredRequest(String mailBodyExpiredRequest) {
+		this.mailBodyExpiredRequest = mailBodyExpiredRequest;
 	}
 }

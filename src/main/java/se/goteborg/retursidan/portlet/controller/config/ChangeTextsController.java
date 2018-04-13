@@ -66,6 +66,13 @@ public class ChangeTextsController extends BaseController {
 				prefs.setValue("mailSubjectNewRequest", texts.getMailSubjectNewRequest());
 				prefs.setValue("mailSenderAddressNewRequest", texts.getMailSenderAddressNewRequest());
 				prefs.setValue("mailBodyNewRequest", texts.getMailBodyNewRequest());
+				prefs.setValue("mailSubjectExpiredAd", texts.getMailSubjectExpiredAd());
+				prefs.setValue("mailSenderAddressExpiredAd", texts.getMailSenderAddressExpiredAd());
+				prefs.setValue("mailBodyExpiredAd", texts.getMailBodyExpiredAd());
+				prefs.setValue("mailSubjectExpiredRequest", texts.getMailSubjectExpiredRequest());
+				prefs.setValue("mailSenderAddressExpiredRequest", texts.getMailSenderAddressExpiredRequest());
+				prefs.setValue("mailBodyExpiredRequest", texts.getMailBodyExpiredRequest());
+				
 				prefs.store();
 			} catch (ReadOnlyException e) {
 				logger.log(Level.SEVERE, "Could not set read-only portlet preferences!", e);

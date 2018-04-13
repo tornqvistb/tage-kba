@@ -1,5 +1,6 @@
 package se.goteborg.retursidan.portlet.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -103,6 +104,7 @@ public class CreateRequestController extends BaseController {
 		if (!bindingResult.hasErrors()) {
 			logger.log(Level.FINER, "Saving request: " + requestAd);
 			requestAd.setStatus(Request.Status.PUBLISHED);
+			requestAd.setPublishDate(new Date());
 			int id = modelService.saveRequest(requestAd);
 			logger.log(Level.FINE, "Request saved with id = " + id);
 			

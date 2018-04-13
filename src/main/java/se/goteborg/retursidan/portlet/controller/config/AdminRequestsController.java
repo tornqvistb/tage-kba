@@ -1,5 +1,6 @@
 package se.goteborg.retursidan.portlet.controller.config;
 
+import java.util.Date;
 import java.util.logging.Logger;
 
 import javax.portlet.ActionRequest;
@@ -60,6 +61,7 @@ public class AdminRequestsController extends PhotoBaseController {
 	    logger.finest("entering republishRequest");
 		Request request = modelService.getRequest(requestId);
 		request.setStatus(Status.PUBLISHED);
+		request.setPublishDate(new Date());
 		modelService.updateRequest(request);
 		response.setRenderParameter("page", "adminRequests");
 	}		

@@ -3,6 +3,11 @@ package se.goteborg.retursidan.dao;
 import static org.hibernate.criterion.Restrictions.eq;
 import static org.hibernate.criterion.Restrictions.like;
 import static org.hibernate.criterion.Restrictions.or;
+import static org.hibernate.criterion.Restrictions.le;
+
+import static se.goteborg.retursidan.model.entity.Advertisement.DisplayOption.ENTIRE_CITY;
+import static se.goteborg.retursidan.model.entity.Advertisement.Status.PUBLISHED;
+import static java.util.Calendar.DAY_OF_YEAR;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -264,4 +269,21 @@ public class AdvertisementDAO extends BaseDAO<Advertisement> {
 		return ((Number) query.uniqueResult()).intValue();
 	}
 	
+	/**
+	 * Finds all ads that have expired and are to be unpublished.
+	 * 
+	 * @param days
+	 * @return list of ads that have expired.
+	 */
+	@SuppressWarnings("unchecked")
+    public List<Advertisement> findAdsToExpire(int days) {
+        Calendar cal = Calendar.getInstance();
+        cal.add(DAY_OF_YEAR, -days);
+        Date maxDate = cal.getTime();
+        Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Advertisement.class);
+        criteria.add(eq("displayOption", ENTIRE_CITY));
+        criteria.add(eq("status", PUBLISHED));
+        criteria.add(le("publishDate", maxDate));
+        return criteria.list();
+    }
 }

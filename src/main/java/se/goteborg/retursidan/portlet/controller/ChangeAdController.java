@@ -45,7 +45,7 @@ public class ChangeAdController extends BaseController {
 		// work-around for Spring form bug/misbehavior, errors are not persisted in model 
 		Advertisement advertisement;
 		if(model.containsAttribute("advertisement")) {
-			advertisement = (Advertisement)model.asMap().get("advertisement");
+			advertisement = (Advertisement)model.asMap().get("advertisement");			
 		} else {
 			advertisement = new Advertisement();
 		}
