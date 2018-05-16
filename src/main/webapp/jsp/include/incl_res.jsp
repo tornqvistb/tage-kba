@@ -11,4 +11,5 @@
 <script src="<%= renderResponse.encodeURL(renderRequest.getContextPath() +  "/external/js/label_printing.js")%>" type="text/javascript"></script>
 <link rel="stylesheet" href="<%= renderResponse.encodeURL(renderRequest.getContextPath() +  "/external/css/fileuploader.css")%>" type="text/css" />
 <link rel="stylesheet" href="<%= renderResponse.encodeURL(renderRequest.getContextPath() +  "/external/css/tage-custom.css")%>" type="text/css" />
+<link rel="stylesheet" href="<%= renderResponse.encodeURL(renderRequest.getContextPath() +  "/external/css/print.css")%>" type="text/css" media="print"/>
  

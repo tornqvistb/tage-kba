@@ -1,5 +1,12 @@
+body {
+  -webkit-print-color-adjust: exact;
+}
+
 .tage-search-button {	
 	margin-bottom: 0!important;
     margin-top: 16px!important;
     margin-left: 6px!important;
+}
+.in-print-only {
+	display: none;
 }

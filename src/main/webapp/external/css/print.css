@@ -1,0 +1,60 @@
+html, body { height: auto; }
+
+@media print {
+	@page {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+}
+
+#banner {	
+	margin-top: 30px;	
+}
+ 
+
+
+#_145_dockbar,
+#m-requested-items,
+#action-area,
+#return-area,
+#footer {	
+	display: none;	
+}
+.content-header {
+	display: none;
+}
+.flexslider {
+    margin: 0;
+    background: #fff;
+    
+}
+.tageweb h1 {
+    font-size: 20px;
+    line-height: 23px;
+    margin-top: 5px;
+}
+.tageweb h2 {
+    font-size: 16px;
+    line-height: 20px;
+}
+.info-box p {
+    margin-bottom: 5px;
+}
+.flexslider .slides img {
+    width: 60%;
+    display: block;
+}
+.tageweb .info-box {
+    border: 5px solid #d3d53a;
+       
+}
+.in-print-only {
+	display: block;
+}
+#content-primary  {
+	border-top: 10px solid #779322;	 
+}
+.print{
+    page-break-after: avoid;
+
+}

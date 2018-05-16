@@ -28,7 +28,7 @@
 	<div id="content-primary" class="article cf" role="main">
 		<div class="content-header cf">
 			<a href="${backUrl}" class="button">Tillbaka</a>
-		</div>	
+		</div>
 		<h1>${advertisement.title}</h1>
 		<div class="inventory-info">
 			<c:if test="${fn:length(advertisement.photos) ne 0}">
@@ -88,43 +88,50 @@
 					<div class="email"><a href="mailto:${advertisement.booker.email}">${advertisement.booker.email}</a></div>
 				</div>
 			</c:if>
-			<c:if test="${!advertisement.booked}">
-				<portlet:renderURL var="bookUrl">
-					<portlet:param name="page" value="bookAd"/>
-					<portlet:param name="advertisementId" value="${advertisement.id}"/>
-				</portlet:renderURL>
-				<a href="${bookUrl}" class="button">Boka</a>
-			</c:if>
-			<c:if test="${userId eq advertisement.creatorUid}">
-				<c:if test="${!advertisement.published}">
-					<portlet:renderURL var="republishAdUrl">
-						<portlet:param name="page" value="republishAd"/>
+			<div class="in-print-only bottom-block">
+				<img src="/tage-theme/images/recycling.png"></img> 
+			</div>			
+			<div id="action-area">
+				<c:if test="${!advertisement.booked}">
+					<portlet:renderURL var="bookUrl">
+						<portlet:param name="page" value="bookAd"/>
 						<portlet:param name="advertisementId" value="${advertisement.id}"/>
 					</portlet:renderURL>
-					<a href="${republishAdUrl}" class="button">Återpublicera</a>
+					<a href="${bookUrl}" class="button">Boka</a>
 				</c:if>
-				<portlet:actionURL name="loadAd" var="changeAdUrl">
-					<portlet:param name="advertisementId" value="${advertisement.id}"/>
-				</portlet:actionURL>
-				<a href="${changeAdUrl}" class="button">Redigera</a>
-				<c:if test="${advertisement.published}">
-					<portlet:renderURL var="extendAdUrl">
-						<portlet:param name="page" value="extendAd"/>
+				<c:if test="${userId eq advertisement.creatorUid}">
+					<c:if test="${!advertisement.published}">
+						<portlet:renderURL var="republishAdUrl">
+							<portlet:param name="page" value="republishAd"/>
+							<portlet:param name="advertisementId" value="${advertisement.id}"/>
+						</portlet:renderURL>
+						<a href="${republishAdUrl}" class="button">Återpublicera</a>
+					</c:if>
+					<portlet:actionURL name="loadAd" var="changeAdUrl">
 						<portlet:param name="advertisementId" value="${advertisement.id}"/>
-					</portlet:renderURL>
-					<a href="${extendAdUrl}" class="button">Förläng annonsen</a>
-					<portlet:renderURL var="unpublishAdUrl">
-						<portlet:param name="page" value="unpublishAd"/>
-						<portlet:param name="advertisementId" value="${advertisement.id}"/>
-					</portlet:renderURL>
-					<a href="${unpublishAdUrl}" class="button">Avpublicera annonsen</a>					
+					</portlet:actionURL>
+					<a href="${changeAdUrl}" class="button">Redigera</a>
+					<c:if test="${advertisement.published}">
+						<portlet:renderURL var="extendAdUrl">
+							<portlet:param name="page" value="extendAd"/>
+							<portlet:param name="advertisementId" value="${advertisement.id}"/>
+						</portlet:renderURL>
+						<a href="${extendAdUrl}" class="button">Förläng annonsen</a>
+						<portlet:renderURL var="unpublishAdUrl">
+							<portlet:param name="page" value="unpublishAd"/>
+							<portlet:param name="advertisementId" value="${advertisement.id}"/>
+						</portlet:renderURL>
+						<a href="${unpublishAdUrl}" class="button">Avpublicera annonsen</a>					
+					</c:if>
+					<a href="javascript:window.print()" class="button">Skriv ut</a>
 				</c:if>
-				<a onclick="PrintLabels()" class="button">Skriv ut</a>
-			</c:if>
+			</div>
 		</div>
-		<a href="<portlet:renderURL>
-					<portlet:param name="page" value=""/>
-				</portlet:renderURL>" class="button">Tillbaka till startsidan</a>
+		<div id="return-area">
+			<a href="<portlet:renderURL>
+						<portlet:param name="page" value=""/>
+					</portlet:renderURL>" class="button">Tillbaka till startsidan</a>
+		</div>
 	</div>
 </c:if>
 <c:if test="${empty advertisement}">
