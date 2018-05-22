@@ -10,3 +10,7 @@ body {
 .in-print-only {
 	display: none;
 }
+
+.content-list {
+	float: left;
+}

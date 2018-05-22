@@ -91,11 +91,12 @@
 					<div class="image">
 						<a href="${viewAdUrl}"><img src="${imageUrl}" alt=""></a>
 					</div>
-					<div class="content">
+					<div class="content content-list">
 						<div class="meta"><span class="date">${ad.formattedPublishDate}</span></div>
 						<h3><a href="${viewAdUrl}">${ad.title}</a></h3>
+						<div class="meta"><span class="author">Antal: <strong>${ad.count}</strong></span></div>
 						<div class="meta"><span class="author">Upplagd av ${ad.unit.name}</span></div>
-						<div class="meta"><span class="category">${ad.category.parent.title} <span class="sep">&gt;</span> ${ad.category.title}</span></div>
+						<%--<div class="meta"><span class="category">${ad.category.parent.title} <span class="sep">&gt;</span> ${ad.category.title}</span></div> --%>
 					</div>
 				</li>
 			</c:forEach>

@@ -94,7 +94,8 @@ public class AdvertisementDAO extends BaseDAO<Advertisement> {
 		} else if (usingDisplayOption){
 			criteria.add(Restrictions.eq("displayOption", Advertisement.DisplayOption.ENTIRE_CITY));
 		}
-		
+
+		/*
 		// Search string
 		if (StringUtils.isNotEmpty(searchString)) {
 			String[] searchParts = searchString.split(" ");
@@ -121,6 +122,19 @@ public class AdvertisementDAO extends BaseDAO<Advertisement> {
 			}
 		}
 		
+		*/
+
+		if (StringUtils.isNotEmpty(searchString)) {
+			String[] searchParts = searchString.split(" ");
+			for (String part : searchParts) {
+				part = part.trim();
+				Criterion likeTitle = like("title", "%" + part + "%").ignoreCase();
+				Criterion likeDescription = like("description", "%" + part + "%").ignoreCase();
+				criteria.add(or(likeTitle, likeDescription));
+			}
+		}
+		
+
 		// Booker UID
 		if (bookerUid != null) {
 			criteria.createAlias("a.booker", "b");
