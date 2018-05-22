@@ -38,14 +38,16 @@ html, body { height: auto; }
     line-height: 20px;
 }
 .info-box p {
-    margin-bottom: 5px;
+    margin-bottom: 0px;
 }
 .flexslider .slides img {
-    width: 60%;
-    display: block;
+	max-height: 220px;
+    width: auto;
+    display: block;    
 }
 .tageweb .info-box {
     border: 5px solid #d3d53a;
+    padding-bottom: 5px;
        
 }
 .in-print-only {
@@ -57,4 +59,7 @@ html, body { height: auto; }
 .print{
     page-break-after: avoid;
 
+}
+.article .meta {
+    margin-bottom: 0px;
 }
