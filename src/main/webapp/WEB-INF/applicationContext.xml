@@ -43,8 +43,8 @@
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<!--<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>-->
+				<!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
 				<prop key="hibernate.show_sql">false</prop>
 				<prop key="org.hibernate.transaction">true</prop>
 				<prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
@@ -72,7 +72,6 @@
 		<property name="session" ref="mailSession"/>
 	</bean>
 	<!-- SET default mail properties -->
-	<!-- 
 	<bean id="mailAccount" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.kungsbacka.se"/>
         <property name="port" value="25"/>
@@ -86,8 +85,8 @@
             </props>
         </property>
     </bean>	
-	 -->	
 	
+	<!-- 
     <bean id="mailAccount" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.gmail.com"/>
         <property name="port" value="587"/>
@@ -102,5 +101,6 @@
             </props>
         </property>
     </bean>	
+	 -->	
 		
 </beans>
