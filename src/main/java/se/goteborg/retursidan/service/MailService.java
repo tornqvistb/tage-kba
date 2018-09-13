@@ -78,6 +78,7 @@ public class MailService {
 		mailBody = mailBody.replaceAll("\\{requesterName\\}", composition.getRequesterName());
 		mailBody = mailBody.replaceAll("\\{requesterPhone\\}", composition.getRequesterPhone());
 		mailBody = mailBody.replaceAll("\\{requesterMail\\}", composition.getRequesterMail());
+		mailBody = mailBody.replaceAll("\\{message\\}", composition.getMessage());
 		mailBody = mailBody.replaceAll("\\{link\\}", "<a href=\"" + composition.getLink() + "\" >Länk</a>");
 		mailBody = mailBody.replaceAll("\\{rules\\}", "Regler för TAGE kan du läsa om " + "<a href=\"" + composition.getRulesUrl() + "\" >här</a>");
 		mailBody = mailBody.replaceAll("\\{publishedDays\\}", String.valueOf(composition.getPublishedDays()));

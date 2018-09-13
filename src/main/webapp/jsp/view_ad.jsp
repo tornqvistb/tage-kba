@@ -122,9 +122,9 @@
 							<portlet:param name="advertisementId" value="${advertisement.id}"/>
 						</portlet:renderURL>
 						<a href="${unpublishAdUrl}" class="button">Avpublicera annonsen</a>					
-					</c:if>
-					<a href="javascript:window.print()" class="button">Skriv ut</a>
+					</c:if>					
 				</c:if>
+				<a href="javascript:window.print()" class="button">Skriv ut</a>
 			</div>
 		</div>
 		<div id="return-area">
