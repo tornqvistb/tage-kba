@@ -11,6 +11,7 @@
 %><portlet:renderURL var="adminAdsUrl"><portlet:param name="page" value="adminAds"/></portlet:renderURL><%
 %><portlet:renderURL var="adminRequestsUrl"><portlet:param name="page" value="adminRequests"/></portlet:renderURL><%
 %><portlet:renderURL var="statisticsUrl"><portlet:param name="page" value="statistics"/></portlet:renderURL><%
+%><portlet:renderURL var="advancedStatisticsUrl"><portlet:param name="page" value="advancedStatistics"/></portlet:renderURL><%
 %><portlet:defineObjects/>
 
 <div id="content-primary" class="article cf" role="main">
@@ -31,6 +32,7 @@
 		Övrigt:
 		<ul>
 			<li><a href="${statisticsUrl}">Visa statistik</a></li>
+			<li><a href="${advancedStatisticsUrl}">Exportera statistik till excel</a></li>			
 		</ul>
 	</p>	
 </div>

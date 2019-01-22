@@ -59,6 +59,9 @@ public class ModelService {
 	public List<Category> getSubCategories(int id) {
 		return categoryDAO.findAllSubCategories(id);
 	}
+    public List<Category> getAllSubCategoriesSorted() {
+        return categoryDAO.findAllSubCategoriesSorted();
+    }
 
 	public void addUnit(Unit unit) {
 		unitDAO.add(unit);

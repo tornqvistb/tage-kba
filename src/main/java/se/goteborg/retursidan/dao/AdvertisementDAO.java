@@ -1,13 +1,13 @@
 package se.goteborg.retursidan.dao;
 
+import static java.util.Calendar.DAY_OF_YEAR;
 import static org.hibernate.criterion.Restrictions.eq;
+import static org.hibernate.criterion.Restrictions.le;
 import static org.hibernate.criterion.Restrictions.like;
 import static org.hibernate.criterion.Restrictions.or;
-import static org.hibernate.criterion.Restrictions.le;
-
+import static org.hibernate.criterion.Restrictions.ge;
 import static se.goteborg.retursidan.model.entity.Advertisement.DisplayOption.ENTIRE_CITY;
 import static se.goteborg.retursidan.model.entity.Advertisement.Status.PUBLISHED;
-import static java.util.Calendar.DAY_OF_YEAR;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,14 +22,15 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import static org.hibernate.criterion.Projections.rowCount;
 
+import se.goteborg.retursidan.model.DateSpan;
 import se.goteborg.retursidan.model.PagedList;
 import se.goteborg.retursidan.model.entity.Advertisement;
 import se.goteborg.retursidan.model.entity.Advertisement.Status;
 import se.goteborg.retursidan.model.entity.Category;
 import se.goteborg.retursidan.model.entity.Photo;
 import se.goteborg.retursidan.model.entity.Unit;
-import se.goteborg.retursidan.util.StringFormatter;
 
 /**
  * Data access object for the Advertisement entity objects
@@ -197,7 +198,7 @@ public class AdvertisementDAO extends BaseDAO<Advertisement> {
 	 * @return the number of advertisements
 	 */
 	public Integer count() {
-		return count(null, null);
+		return count(null, null, null, null);
 	}
 
 	/**
@@ -206,7 +207,7 @@ public class AdvertisementDAO extends BaseDAO<Advertisement> {
 	 * @return the number of advertisements
 	 */
 	public Integer count(Unit unit) {
-		return count(null, unit);
+		return count(null, unit, null, null);
 	}
 
 	/**
@@ -215,7 +216,7 @@ public class AdvertisementDAO extends BaseDAO<Advertisement> {
 	 * @return the number of advertisements
 	 */
 	public Integer count(Status status) {
-		return count(status, null);
+		return count(status, null, null, null);
 	}
 
 	/**
@@ -224,6 +225,7 @@ public class AdvertisementDAO extends BaseDAO<Advertisement> {
 	 * @param unit The unit to filter with, or null for all units
 	 * @return the number of advertisements
 	 */
+	/*
 	public Integer count(Status status, Unit unit) {
 		Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Advertisement.class);
 		if (unit != null) {
@@ -234,7 +236,7 @@ public class AdvertisementDAO extends BaseDAO<Advertisement> {
 		}
 		return ((Number)criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
 	}
-
+*/
 	/**
 	 * Expire any ad that is older than the provided amount of days
 	 * @param days The maximum number of days 
@@ -300,4 +302,101 @@ public class AdvertisementDAO extends BaseDAO<Advertisement> {
         criteria.add(le("publishDate", maxDate));
         return criteria.list();
     }
+	
+	/**
+	 * Count the number of advertisements in the database, filtered using the provided method parameters
+	 * @param status The status to filter with, or null for all statuses
+	 * @param unit The unit to filter with, or null for all units
+	 * @return the number of advertisements
+	 */
+	public Integer count(Status status, Unit unit, DateSpan span, Category category) {
+		Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Advertisement.class);
+		if (unit != null) {
+			criteria.add(eq("unit", unit));
+		}
+		if (status != null) {
+			criteria.add(eq("status", status));
+		}
+		if (span != null) {
+            criteria.add(ge("created", span.getFromDate()));
+            criteria.add(le("created",  span.getToDate()));
+        }
+		if (category != null) {
+            criteria.add(eq("category", category));
+        }
+		return ((Number)criteria.setProjection(rowCount()).uniqueResult()).intValue();
+	}
+    /**
+     * Retrieve the count of all advertisements in the database with a certain datespan
+     * @return the number of advertisements
+     */
+    public Integer count(DateSpan span) {
+        return count(null, null, span, null);
+    }
+	 /**
+     * Retrieve the count of all advertisements in the database with a certain datespan, unit and status
+     * @return the number of advertisements
+     */
+    public Integer count(Status status, DateSpan span, Unit unit) {
+        return count(status, unit, span, null);
+    }
+    /**
+     * Retrieve the count of all advertisements in the database with a certain datespan and unit.
+     * 
+     * @param span
+     * @param unit
+     * @return the number of advertisements
+     */
+    public Integer count(DateSpan span, Unit unit) {
+        return count(null, unit, span, null);
+    }
+
+    /**
+     * Retrieve the count of all advertisements in the database with a certain datespan and status.
+     * 
+     * @param status
+     * @param span
+     * @return the number of advertisements
+     */
+    public Integer count(Status status, DateSpan span) {
+        return count(status, null, span, null);
+    }
+    /**
+     * Retrieve the count of all advertisements in the database with a certain datespan and category
+     * 
+     * @param span
+     * @param category
+     * @return the number of advertisements
+     */
+    public Integer count(DateSpan span, Category category) {
+        return count(null, null, span, category);
+    }
+    /**
+     * Retrieve the count of all advertisements in the database with a certain status, datespan and category
+     * 
+     * @param status
+     * @param span
+     * @param category
+     * @return the number of advertisements
+     */
+    public Integer count(Status status, DateSpan span, Category category) {
+        return count(status, null, span, category);
+    }
+
+    /**
+     * Retrieve the count of all advertisements in the database with a certain unit, datespan and category
+     * @return the number of advertisements
+     */
+    public Integer count(Unit unit, DateSpan span, Category category) {
+        return count(null, unit, span, category);
+    }
+	/**
+	 * Retrieve the count of all advertisements for the specified unit with certain status
+	 * @param unit The unit to use as filter
+	 * @return the number of advertisements
+	 */
+	public Integer count(Status status, Unit unit) {
+		return count(status, unit, null, null);
+	}
+
 }

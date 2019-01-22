@@ -2,6 +2,8 @@ package se.goteborg.retursidan.dao;
 
 import static org.hibernate.criterion.Restrictions.eq;
 import static org.hibernate.criterion.Restrictions.le;
+import static org.hibernate.criterion.Restrictions.ge;
+import static org.hibernate.criterion.Projections.rowCount;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,6 +17,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import se.goteborg.retursidan.model.DateSpan;
 import se.goteborg.retursidan.model.PagedList;
 import se.goteborg.retursidan.model.entity.Category;
 import se.goteborg.retursidan.model.entity.Photo;
@@ -28,6 +31,12 @@ import se.goteborg.retursidan.model.entity.Unit;
  */
 @Repository
 public class RequestDAO extends BaseDAO<Request> {
+	
+    private static final String CRITERIA_STATUS = "status";
+    private static final String CRITERIA_CREATED = "created";
+    private static final String CRITERIA_UNIT = "unit";
+    private static final String CRITERIA_CATEGORY = "category";
+    private static final String CRITERIA_PUBLISH_DATE = "publishDate";
 	
 	/**
 	 * @see BaseDAO#findById(int)
@@ -106,26 +115,75 @@ public class RequestDAO extends BaseDAO<Request> {
 		return replaceProxiedPhotos(criteria.list());
 	}
 	
-	/**
-	 * Retrieve the number of requests found in the database
-	 * @return the number of requests found
-	 */
-	public Integer count() {
-		return count(null);
-	}
+    /**
+     * Retrieve the number of requests found in the database
+     * 
+     * @return the number of requests found
+     */
+    public Integer count() {
+        return count(null, null, null);
+    }
+    /**
+     * Retrieve the number of requests found in the database with a certain unit
+     * 
+     * @param unit
+     * @return the number of requests
+     */
+    public Integer count(Unit unit) {
+        return count(unit, null, null);
+    }
+    /**
+     * Retrieve the number of requests found in the database with a certain datespan
+     * 
+     * @param span
+     * @return the number of requests
+     */
+    public Integer count(DateSpan span) {
+        return count(null, span, null);
+    }
+    /**
+     * Retrieve the number of requests found in the database with a certain unit and datespan
+     * 
+     * @param unit
+     * @param span
+     * @return the number of requests
+     */
+    public Integer count(Unit unit, DateSpan span) {
+        return count(unit, span, null);
+    }
+    /**
+     * Retrieve the number of requests found in the database with a certain datespan and category
+     * 
+     * @param span
+     * @param category
+     * @return the number of requests
+     */
+    public Integer count(DateSpan span, Category category) {
+        return count(null, span, category);
+    }
 
-	/**
-	 * Retrieve the number of requests found in the database for the given unit
-	 * @param unit the unit to search for, or null if all requests should be counted
-	 * @return the number of requests found
-	 */
-	public Integer count(Unit unit) {
-		Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Request.class);
-		if (unit != null) {
-			criteria.add(Restrictions.eq("unit", unit));
-		}
-		return ((Number)criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
-	}
+    /**
+     * Retrieve the number of requests found in the database for the given unit
+     * 
+     * @param unit
+     *            the unit to search for, or null if all requests should be counted
+     * @return the number of requests found
+     */
+    public Integer count(Unit unit, DateSpan span, Category category) {
+        Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Request.class);
+        if (unit != null) {
+            criteria.add(eq(CRITERIA_UNIT, unit));
+        }
+        if (span != null) {
+            criteria.add(ge(CRITERIA_CREATED, span.getFromDate()));
+            criteria.add(le(CRITERIA_CREATED,  span.getToDate()));
+        }
+        if (category != null) {
+            criteria.add(eq(CRITERIA_CATEGORY, category));
+        }
+
+        return ((Number)criteria.setProjection(rowCount()).uniqueResult()).intValue();
+    }
 
 	/**
 	 * Expire any request that is older than the provided amount of days

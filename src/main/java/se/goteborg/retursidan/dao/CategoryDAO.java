@@ -1,5 +1,6 @@
 package se.goteborg.retursidan.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -59,4 +60,20 @@ public class CategoryDAO extends BaseDAO<Category> {
 		criteria.addOrder(Order.asc("title"));
 		return criteria.list();
 	}
+	   /**
+     * Find all sub categories sorted by name
+     * @return a list of sub categories
+     */
+    public List<Category> findAllSubCategoriesSorted() {
+        List<Category> result = new ArrayList<Category>();
+        List<Category> topCats = findTopCategories();
+        for (Category topCat : topCats) {
+            List<Category> subCats = findAllSubCategories(topCat.getId());
+            for (Category subCat : subCats) {
+                result.add(subCat);
+            }
+        }
+        return result;
+    }
+
 }

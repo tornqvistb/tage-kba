@@ -173,6 +173,12 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>3.15</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>
