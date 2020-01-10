@@ -15,6 +15,7 @@ import se.goteborg.retursidan.exceptions.AdvertisementExpiredException;
 import se.goteborg.retursidan.exceptions.AdvertisementNotFoundException;
 import se.goteborg.retursidan.model.entity.Advertisement;
 import se.goteborg.retursidan.model.entity.Person;
+import se.goteborg.retursidan.model.form.Booking;
 import se.goteborg.retursidan.model.form.Config;
 import se.goteborg.retursidan.model.form.MailComposition;
 import se.goteborg.retursidan.model.form.Texts;
@@ -30,7 +31,9 @@ public class BookingService {
 	@Autowired
 	private MailService mailService;
 		
-	public void bookAdvertisement(Integer advertisementId, Person contact, Texts texts, Config config, String adLink) throws AdvertisementBookingFailedException {
+	public void bookAdvertisement(Booking booking, Texts texts, Config config, String adLink) throws AdvertisementBookingFailedException {
+		Integer advertisementId = booking.getAdvertisementId();
+		Person contact = booking.getContact();
 		logger.log(Level.FINE, "Trying to book advertisement id=" + advertisementId + " for " + contact);
 	
 		Advertisement advertisement = advertisementDAO.findById(advertisementId);
@@ -49,8 +52,16 @@ public class BookingService {
 				logger.log(Level.WARNING, "Advertisement with id=" + advertisementId + " is expired and can not be booked.");
 				throw new AdvertisementExpiredException(advertisementId);
 			}
-			advertisement.setBooker(contact);
-			advertisement.setStatus(Advertisement.Status.BOOKED);
+			if (booking.getBookedQuantity() > advertisement.getCount()) {
+				logger.log(Level.WARNING, "The desired quantity is already booked for Advertisement with id=" + advertisementId);
+				throw new AdvertisementAlreadyBookedException(advertisementId);				
+			}
+			
+			advertisement.setCount(advertisement.getCount() - booking.getBookedQuantity());
+			if (advertisement.getCount() <= 0) {
+				advertisement.setBooker(contact);
+				advertisement.setStatus(Advertisement.Status.BOOKED);
+			}
 			advertisementDAO.merge(advertisement);
 			
 			MailComposition composition = new MailComposition(null,

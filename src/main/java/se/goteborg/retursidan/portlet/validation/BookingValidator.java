@@ -33,6 +33,13 @@ public class BookingValidator implements Validator {
 
 		ValidationUtils.invokeValidator(personValidator, booking.getContact(), errors);
 		
+		// Check quantity
+		if (booking.getBookedQuantity() == null || booking.getBookedQuantity() <= 0) {
+			errors.rejectValue("bookedQuantity", "bookedQuantity.mandatory");
+		} else if (booking.getBookedQuantity() > booking.getAdQuantity()) {
+			errors.rejectValue("bookedQuantity", "bookedQuantity.toobig");
+		}
+		
 		if (errors.hasErrors()) {
 			logger.log(Level.FINE, errors.toString());
 		}

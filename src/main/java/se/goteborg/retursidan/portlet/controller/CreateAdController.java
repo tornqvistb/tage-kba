@@ -101,6 +101,7 @@ public class CreateAdController extends BaseController {
 			logger.log(Level.FINER, "Saving advertisement: " + advertisement);
 			advertisement.setStatus(Advertisement.Status.PUBLISHED);
 			advertisement.setPublishDate(DateHelper.getCurrentDate());
+			advertisement.setOriginalCount(advertisement.getCount());
 			int id = modelService.saveAd(advertisement);
 			logger.log(Level.FINE, "Advertisement saved with id = " + id);
 			

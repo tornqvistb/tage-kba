@@ -83,6 +83,15 @@
 				</spring:bind>				
 			</div>
 		</div>				
+		<p class="meta">Kvarvarande antal på annonsen: <strong>${booking.adQuantity}</strong></p>
+		<div class="row cols-1 cf">
+			<c:set var="err"><form:errors path="bookedQuantity"/></c:set> 
+			<div class="text col small col-1 mandatory <%= bindingResult.hasFieldErrors("bookedQuantity") ? "error" : "" %>">
+				<label for="5086c4a3b2123">Antal att boka <em>(obligatoriskt)</em> <strong><form:errors path="bookedQuantity"/></strong></label>
+				<form:input path="bookedQuantity" id="5086c4a3b2123" type="number"/>
+			</div>
+		</div>		
+		
 		<div class="row cols-1 cf">
 			<div class="col medium col-1 submit-area">
 				<input type="submit" value="Bekräfta bokningen" name="submit-50911f89c035a">

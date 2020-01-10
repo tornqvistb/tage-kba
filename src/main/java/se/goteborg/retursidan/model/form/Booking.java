@@ -15,7 +15,21 @@ public class Booking extends GeneralModelBean {
 	private Integer advertisementId;
 	private String advertisementTitle;
 	private boolean transportationConfirmed;
+	private Integer adQuantity;
+	private Integer bookedQuantity;
 	
+	public Integer getAdQuantity() {
+		return adQuantity;
+	}
+	public void setAdQuantity(Integer adQuantity) {
+		this.adQuantity = adQuantity;
+	}
+	public Integer getBookedQuantity() {
+		return bookedQuantity;
+	}
+	public void setBookedQuantity(Integer bookedQuantity) {
+		this.bookedQuantity = bookedQuantity;
+	}
 	public Person getContact() {
 		return contact;
 	}

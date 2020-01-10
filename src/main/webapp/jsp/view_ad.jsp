@@ -61,7 +61,8 @@
 			<p class="meta"><span class="date">${advertisement.formattedCreatedDate}</span> | <span class="category">${advertisement.category.parent.title} <span class="sep">&gt;</span> ${advertisement.category.title}</span> | <span class="${statusClass}">${statusTitle}</span></p>
 			<p class="meta">Bortskänkes av <strong>${advertisement.unit.name}</strong></p>
 			<p class="meta">${advertisement.descriptionDisplay}</p>
-			<p class="meta">Antal: <strong>${advertisement.count}</strong></p>
+			<p class="meta">Ursprungligt antal: <strong>${advertisement.originalCount}</strong></p>
+			<p class="meta">Kvarvarande antal: <strong>${advertisement.count}</strong></p>
 			<h2>Information om hämtning</h2>
 			<div class="info-box">
 				<p><strong>Hämtningsadress: </strong>${advertisement.pickupAddress}</p>

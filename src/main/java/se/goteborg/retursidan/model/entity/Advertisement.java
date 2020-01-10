@@ -93,7 +93,10 @@ public class Advertisement extends GeneralEntityBean implements Serializable {
 	
 	@Column(nullable=true)
 	private Integer count;
-	
+
+	@Column(nullable=true)
+	private Integer originalCount;
+
 	/**
 	 * Fetch the photos lazy, we do not want to load the actual image data for each photo
 	 */
@@ -264,6 +267,14 @@ public class Advertisement extends GeneralEntityBean implements Serializable {
 		} else {
 			return "";
 		} 
+	}
+
+	public Integer getOriginalCount() {
+		return originalCount;
+	}
+
+	public void setOriginalCount(Integer originalCount) {
+		this.originalCount = originalCount;
 	}
 
 }

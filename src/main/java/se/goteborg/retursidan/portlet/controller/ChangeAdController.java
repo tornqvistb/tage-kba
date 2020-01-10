@@ -76,7 +76,7 @@ public class ChangeAdController extends BaseController {
 	public void updateAd(@Valid @ModelAttribute("advertisement") Advertisement advertisement, BindingResult bindingResult, ActionRequest request, ActionResponse response, Model model) {
 		advertisement.setCreatorUid(getUserId(request));
 		if (!bindingResult.hasErrors()) {
-			logger.log(Level.FINER, "Updating advertisement: " + advertisement);
+			logger.log(Level.FINER, "Updating advertisement: " + advertisement);			
 			modelService.updateAd(advertisement);
 			logger.log(Level.FINE, "Advertisement updated");
 			// reload the ad into the model to get all data populated

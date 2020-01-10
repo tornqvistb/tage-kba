@@ -61,6 +61,8 @@ public class BookAdController extends BaseController {
 			logger.log(Level.FINER, "getBooking has advertisment: " + advertisement.getId());
 			booking.setAdvertisementId(advertisement.getId());
 			booking.setAdvertisementTitle(advertisement.getTitle());
+			booking.setAdQuantity(advertisement.getCount());
+			booking.setBookedQuantity(advertisement.getCount());
 		} else {
 			logger.log(Level.FINER, "getBooking did NOT find advertisment");
 		}
@@ -99,7 +101,7 @@ public class BookAdController extends BaseController {
 			booking.getContact().setUserId(getUserId(request));
 			try {
 				String adLink = CreateURLHelper.createHttpBaseURL(request) + getConfig(request).getPocURIBase() +  ADVERTISEMENT_URI + booking.getAdvertisementId();
-				bookingService.bookAdvertisement(booking.getAdvertisementId(), booking.getContact(), getTexts(request), getConfig(request), adLink);
+				bookingService.bookAdvertisement(booking, getTexts(request), getConfig(request), adLink);
 				response.setRenderParameter("page", "bookAdFinished");
 			} catch(AdvertisementException e) {
 				model.addAttribute("errorMessage", messageSource.getMessage(e.getMessageCode(), new Object[]{e.getAdvertisementId()}, request.getLocale()));
