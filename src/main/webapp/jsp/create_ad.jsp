@@ -172,6 +172,29 @@
 				<hr>
 			</div>
 		</div>
+
+		<div class="row cols-2 cf">
+			<div class="select medium col col-1 mandatory <%= bindingResult.hasFieldErrors("expireType") ? "error" : "" %>">
+				<label for="5086c4a3b2945">Typ av avpublicering <em>(obligatoriskt)</em> <strong><form:errors path="expireType"/></strong></label>
+				<form:select id="5086c4a3b2945" path="expireType">
+					<form:option value="">Välj typ av avpublicering...</form:option>
+					<form:option value="<%= se.goteborg.retursidan.model.entity.Advertisement.ExpireType.DEFAULT%>">Enligt standardvärde (efter ${config.adExpireTime} dagar)</form:option>
+					<form:option value="<%= se.goteborg.retursidan.model.entity.Advertisement.ExpireType.FIXED_DATE%>">Ett visst datum</form:option>
+					<form:option value="<%= se.goteborg.retursidan.model.entity.Advertisement.ExpireType.NEVER%>">Publicerad tills vidare</form:option>
+				</form:select>
+			</div>
+			<div id="expireDate" class="medium col col-2 mandatory <%= bindingResult.hasFieldErrors("expireDateString") ? "error" : "" %>">
+				<label for="5086c4a3b2apq">Avpubliceringsdatum <em>(obligatoriskt)</em> <strong><form:errors path="expireDateString"/></strong></label>
+				<form:input path="expireDateString" id="5086c4a3b2apq" type="date"/>
+			</div>
+		</div>
+
+		
+		<div class="row cols-1 cf">
+			<div class="col hr col-1">
+				<hr>
+			</div>
+		</div>
 		<div class="row cols-1 cf" id="display-option-section">
 			<div class="select medium col col-1">
 				<fieldset>
@@ -189,6 +212,7 @@
 				</fieldset>
 			</div>
 		</div>
+		
 		<%--<p><span class="author">Annonsen skapad av ${userId}.</span></p> --%>
 		<div class="row cols-1 cf">
 			<div class="col medium col-1 submit-area">
@@ -217,4 +241,19 @@
 			}
 		});
 	});
+	function showHideExpireDate(value) {
+		if ( value == 'FIXED_DATE') {
+			$("#expireDate").show();
+		} else {
+			$("#expireDate").hide();
+		}		
+	}
+	$("#5086c4a3b2945").change(function() {
+		showHideExpireDate(this.value);
+	});
+	$(document).ready(function(){
+		var expireType = document.getElementById("5086c4a3b2945").value;
+		showHideExpireDate(expireType);
+	});
+	
 </script>

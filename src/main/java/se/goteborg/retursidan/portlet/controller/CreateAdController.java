@@ -1,5 +1,6 @@
 package se.goteborg.retursidan.portlet.controller;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -10,6 +11,7 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletRequest;
 import javax.validation.Valid;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -94,6 +96,15 @@ public class CreateAdController extends BaseController {
 		return "create_ad";
 	}
 
+	private Date getExpireDate(String dateStr) {
+		try {
+			return DateHelper.getDateFromString(dateStr);
+		} catch (ParseException e) {
+			logger.log(Level.WARNING, "Could not parse date: " + dateStr);
+			return null;
+		}
+	}
+	
 	@ActionMapping("saveAd")
 	public void saveAd(@Valid @ModelAttribute("advertisement") Advertisement advertisement, BindingResult bindingResult, ActionRequest request, ActionResponse response, Model model) {
 		advertisement.setCreatorUid(getUserId(request));
@@ -102,6 +113,9 @@ public class CreateAdController extends BaseController {
 			advertisement.setStatus(Advertisement.Status.PUBLISHED);
 			advertisement.setPublishDate(DateHelper.getCurrentDate());
 			advertisement.setOriginalCount(advertisement.getCount());
+			if (Advertisement.ExpireType.FIXED_DATE.equals(advertisement.getExpireType())) {
+				advertisement.setExpireDate(getExpireDate(advertisement.getExpireDateString()));
+			}
 			int id = modelService.saveAd(advertisement);
 			logger.log(Level.FINE, "Advertisement saved with id = " + id);
 			

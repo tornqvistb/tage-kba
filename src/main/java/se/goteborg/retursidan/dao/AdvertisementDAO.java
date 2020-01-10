@@ -8,6 +8,9 @@ import static org.hibernate.criterion.Restrictions.or;
 import static org.hibernate.criterion.Restrictions.ge;
 import static se.goteborg.retursidan.model.entity.Advertisement.DisplayOption.ENTIRE_CITY;
 import static se.goteborg.retursidan.model.entity.Advertisement.Status.PUBLISHED;
+import static se.goteborg.retursidan.model.entity.Advertisement.ExpireType.DEFAULT;
+import static se.goteborg.retursidan.model.entity.Advertisement.ExpireType.FIXED_DATE;
+
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,6 +34,7 @@ import se.goteborg.retursidan.model.entity.Advertisement.Status;
 import se.goteborg.retursidan.model.entity.Category;
 import se.goteborg.retursidan.model.entity.Photo;
 import se.goteborg.retursidan.model.entity.Unit;
+import se.goteborg.retursidan.util.DateHelper;
 
 /**
  * Data access object for the Advertisement entity objects
@@ -299,8 +303,17 @@ public class AdvertisementDAO extends BaseDAO<Advertisement> {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Advertisement.class);
         criteria.add(eq("displayOption", ENTIRE_CITY));
         criteria.add(eq("status", PUBLISHED));
+        criteria.add(eq("expireType", DEFAULT));
         criteria.add(le("publishDate", maxDate));
-        return criteria.list();
+        List<Advertisement> expiredAds = criteria.list();
+        criteria = getSessionFactory().getCurrentSession().createCriteria(Advertisement.class);
+        criteria.add(eq("displayOption", ENTIRE_CITY));
+        criteria.add(eq("status", PUBLISHED));
+        criteria.add(eq("expireType", FIXED_DATE));
+        criteria.add(le("expireDate", DateHelper.getCurrentDate()));
+        List<Advertisement> fixedDateExpired = criteria.list();
+        expiredAds.addAll(fixedDateExpired);
+        return expiredAds;
     }
 	
 	/**

@@ -44,6 +44,10 @@ public class Advertisement extends GeneralEntityBean implements Serializable {
 	public enum DisplayOption {
 		OWN_UNIT, ENTIRE_CITY
 	}
+
+	public enum ExpireType {
+		DEFAULT, FIXED_DATE, NEVER
+	}
 	
 	@Column(nullable=false)
 	private Status status = Status.PUBLISHED;
@@ -51,7 +55,6 @@ public class Advertisement extends GeneralEntityBean implements Serializable {
 	@DateTimeFormat(style="SS")
 	@Column(nullable=false)
 	private Date created = DateHelper.getCurrentDate();
-	;
 	
 	@Column(nullable=false)
 	private String creatorUid;
@@ -96,6 +99,15 @@ public class Advertisement extends GeneralEntityBean implements Serializable {
 
 	@Column(nullable=true)
 	private Integer originalCount;
+
+	@Column(nullable=false)
+	private ExpireType expireType = ExpireType.DEFAULT;
+	
+	@DateTimeFormat(style="SS")
+	@Column(nullable=true)
+	private Date expireDate;
+	
+	private String expireDateString;
 
 	/**
 	 * Fetch the photos lazy, we do not want to load the actual image data for each photo
@@ -275,6 +287,30 @@ public class Advertisement extends GeneralEntityBean implements Serializable {
 
 	public void setOriginalCount(Integer originalCount) {
 		this.originalCount = originalCount;
+	}
+
+	public ExpireType getExpireType() {
+		return expireType;
+	}
+
+	public void setExpireType(ExpireType expireType) {
+		this.expireType = expireType;
+	}
+
+	public Date getExpireDate() {
+		return expireDate;
+	}
+
+	public void setExpireDate(Date expireDate) {
+		this.expireDate = expireDate;
+	}
+
+	public String getExpireDateString() {
+		return expireDateString;
+	}
+
+	public void setExpireDateString(String expireDateString) {
+		this.expireDateString = expireDateString;
 	}
 
 }

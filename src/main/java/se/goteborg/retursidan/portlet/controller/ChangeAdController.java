@@ -1,5 +1,7 @@
 package se.goteborg.retursidan.portlet.controller;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +26,7 @@ import se.goteborg.retursidan.model.entity.Category;
 import se.goteborg.retursidan.model.entity.Unit;
 import se.goteborg.retursidan.portlet.binding.PhotoListPropertyEditor;
 import se.goteborg.retursidan.portlet.validation.AdValidator;
+import se.goteborg.retursidan.util.DateHelper;
 
 /**
  * Controller handling changing ads
@@ -72,11 +75,23 @@ public class ChangeAdController extends BaseController {
 		response.setRenderParameter("page", "changeAd");
 	}
 	
+	private Date getExpireDate(String dateStr) {
+		try {
+			return DateHelper.getDateFromString(dateStr);
+		} catch (ParseException e) {
+			logger.log(Level.WARNING, "Could not parse date: " + dateStr);
+			return null;
+		}
+	}
+	
 	@ActionMapping("updateAd")
 	public void updateAd(@Valid @ModelAttribute("advertisement") Advertisement advertisement, BindingResult bindingResult, ActionRequest request, ActionResponse response, Model model) {
 		advertisement.setCreatorUid(getUserId(request));
 		if (!bindingResult.hasErrors()) {
-			logger.log(Level.FINER, "Updating advertisement: " + advertisement);			
+			logger.log(Level.FINER, "Updating advertisement: " + advertisement);	
+			if (Advertisement.ExpireType.FIXED_DATE.equals(advertisement.getExpireType())) {
+				advertisement.setExpireDate(getExpireDate(advertisement.getExpireDateString()));
+			}			
 			modelService.updateAd(advertisement);
 			logger.log(Level.FINE, "Advertisement updated");
 			// reload the ad into the model to get all data populated

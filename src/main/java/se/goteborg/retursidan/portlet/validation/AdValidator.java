@@ -1,14 +1,18 @@
 package se.goteborg.retursidan.portlet.validation;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import se.goteborg.retursidan.model.entity.Advertisement;
+import se.goteborg.retursidan.util.DateHelper;
 
 @Component
 public class AdValidator implements Validator {
@@ -47,6 +51,27 @@ public class AdValidator implements Validator {
 		ValidationUtils.rejectIfEmpty(errors, "count", "count.missing");
 		if (ad.getCount() != null && ad.getCount() <= 0) {
 			errors.rejectValue("count", "count.mustbegreaterthanzero");
+		}
+		
+		if(ad.getExpireType() == null) {
+			errors.rejectValue("expireType", "expireType.missing");
+		} else {
+			if(Advertisement.ExpireType.FIXED_DATE.equals(ad.getExpireType())) {
+				if (StringUtils.isEmpty(ad.getExpireDateString())) {
+					errors.rejectValue("expireDate", "expireDate.missing");
+				} else {
+					// Check that Date is valid and in future
+					try {
+						Date expireDate = DateHelper.getDateFromString(ad.getExpireDateString());
+						Date now = DateHelper.getCurrentDate();
+						if (expireDate.before(now)) {
+							errors.rejectValue("expireDate", "expireDate.mustbeinfuture");
+						}
+					} catch (ParseException e) {
+						errors.rejectValue("expireDate", "expireDate.badformat");
+					} 
+				}
+			}
 		}
 
 		if (errors.hasErrors()) {
