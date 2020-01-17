@@ -8,7 +8,7 @@ public class MailComposition {
 			String mailHeader, String title, String bookerName, String bookerPhone, String bookerMail,
 			String advertiserName, String advertiserPhone, String advertiserMail, String respondentName,
 			String respondentPhone, String respondentMail, String requesterName, String requesterPhone,
-			String requesterMail, String message, String link, String configMailBody, String rulesUrl, String logoUrl) {
+			String requesterMail, String message, String link, String configMailBody, String rulesUrl, String logoUrl, int bookedQuantity) {
 		super();
 		this.photo = photo;
 		this.senderAdress = senderAdress;
@@ -33,6 +33,7 @@ public class MailComposition {
 		this.configMailBody = configMailBody;
 		this.rulesUrl = rulesUrl;		
 		this.logoUrl = logoUrl;
+		this.bookedQuantity = bookedQuantity;
 	}
 	
 	public MailComposition() {
@@ -64,6 +65,7 @@ public class MailComposition {
 	private String message = "";
 	private int id;
 	private int publishedDays;
+	private int bookedQuantity;
 	
 	public Photo getPhoto() {
 		return photo;
@@ -216,5 +218,13 @@ public class MailComposition {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getBookedQuantity() {
+		return bookedQuantity;
+	}
+
+	public void setBookedQuantity(int bookedQuantity) {
+		this.bookedQuantity = bookedQuantity;
 	}
 }

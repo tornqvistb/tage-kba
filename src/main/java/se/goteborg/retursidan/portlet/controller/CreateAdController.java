@@ -138,7 +138,8 @@ public class CreateAdController extends BaseController {
 					adLink,
 					texts.getMailBodyNewAd(),
 					config.getRulesUrl(),
-					config.getLogoUrl());
+					config.getLogoUrl(),
+					0);
 
 			if (!advertisement.getPhotos().isEmpty()) {				
 				composition.setPhoto(modelService.getPhoto(advertisement.getPhotos().get(0).getId()));

@@ -117,7 +117,7 @@
 		</div>
 		<p>Följande ersättningsfält kan du använda i innehållstexten, de byts ut mot motsvarande text när epost-meddelandet skapas:<br/>
 		Annonsens rubrik: <strong>{title}</strong>, bokarens namn: <strong>{bookerName}</strong>, bokarens telefon: <strong>{bookerPhone}</strong>, 
-		bokarens epost-adress:<strong>{bookerMail}</strong>, annonsörens namn: <strong>{advertiserName}</strong>, 
+		bokarens epost-adress:<strong>{bookerMail}</strong>, bokat antal:<strong>{bookedQuantity}</strong>, annonsörens namn: <strong>{advertiserName}</strong>, 
 		annonsörens telefon: <strong>{advertiserPhone}</strong>, annonsörens epost-adress: <strong>{advertiserMail}</strong>, 
 		annonsens bild <strong>{image}</strong>, länk till regelsida <strong>{rules}</strong> och länk till annonsen: <strong>{link}</strong>. 
 		HTML-taggar används enligt följande exempel: <strong>[div]</strong>lite innehåll<strong>[/div]</strong></p>		

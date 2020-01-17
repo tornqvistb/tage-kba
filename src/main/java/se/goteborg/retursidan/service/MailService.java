@@ -69,6 +69,7 @@ public class MailService {
 		mailBody = mailBody.replaceAll("\\{bookerName\\}", composition.getBookerName());
 		mailBody = mailBody.replaceAll("\\{bookerPhone\\}", composition.getBookerPhone());
 		mailBody = mailBody.replaceAll("\\{bookerMail\\}", composition.getBookerMail());
+		mailBody = mailBody.replaceAll("\\{bookedQuantity\\}", String.valueOf(composition.getBookedQuantity()));
 		mailBody = mailBody.replaceAll("\\{advertiserName\\}", composition.getAdvertiserName());
 		mailBody = mailBody.replaceAll("\\{advertiserPhone\\}", composition.getAdvertiserPhone());
 		mailBody = mailBody.replaceAll("\\{advertiserMail\\}", composition.getAdvertiserMail());
@@ -78,6 +79,7 @@ public class MailService {
 		mailBody = mailBody.replaceAll("\\{requesterName\\}", composition.getRequesterName());
 		mailBody = mailBody.replaceAll("\\{requesterPhone\\}", composition.getRequesterPhone());
 		mailBody = mailBody.replaceAll("\\{requesterMail\\}", composition.getRequesterMail());
+		mailBody = mailBody.replaceAll("\\{bookedQuantity\\}", composition.getRequesterMail());
 		mailBody = mailBody.replaceAll("\\{message\\}", composition.getMessage());
 		mailBody = mailBody.replaceAll("\\{link\\}", "<a href=\"" + composition.getLink() + "\" >Länk</a>");
 		mailBody = mailBody.replaceAll("\\{rules\\}", "Regler för TAGE kan du läsa om " + "<a href=\"" + composition.getRulesUrl() + "\" >här</a>");

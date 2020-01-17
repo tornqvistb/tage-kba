@@ -112,7 +112,8 @@ public class ContactRequesterController extends BaseController {
 					adLink,
 					texts.getMailBodyRequest(),
 					config.getRulesUrl(),
-					config.getLogoUrl());
+					config.getLogoUrl(),
+					0);
 			
 			if (!request.getPhotos().isEmpty()) {				
 				composition.setPhoto(modelService.getPhoto(request.getPhotos().get(0).getId()));

@@ -79,7 +79,8 @@ public class BookingService {
 					adLink,
 					texts.getMailBody(),
 					config.getRulesUrl(),
-					config.getLogoUrl());
+					config.getLogoUrl(),
+					booking.getBookedQuantity());
 
 			if (!advertisement.getPhotos().isEmpty()) {
 				composition.setPhoto(advertisement.getPhotos().get(0));

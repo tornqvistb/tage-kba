@@ -127,7 +127,8 @@ public class CreateRequestController extends BaseController {
 					adLink,
 					texts.getMailBodyNewRequest(),
 					config.getRulesUrl(),
-					config.getLogoUrl());
+					config.getLogoUrl(),
+					0);
 
 			if (!requestAd.getPhotos().isEmpty()) {				
 				composition.setPhoto(modelService.getPhoto(requestAd.getPhotos().get(0).getId()));

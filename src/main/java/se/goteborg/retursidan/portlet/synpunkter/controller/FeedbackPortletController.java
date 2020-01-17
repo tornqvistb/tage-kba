@@ -106,7 +106,8 @@ public class FeedbackPortletController extends BaseController{
 					feedback.getMessage(),
 					"",
 					mailTemplate,
-					config.getRulesUrl(), config.getLogoUrl());
+					config.getRulesUrl(), config.getLogoUrl(),
+					0);
 			mailService.composeAndSendMail(composition);
 			actionResponse.setRenderParameter("page", "feedbackFinished");
 		} else {
