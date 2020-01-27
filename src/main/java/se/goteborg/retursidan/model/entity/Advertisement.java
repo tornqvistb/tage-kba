@@ -101,7 +101,7 @@ public class Advertisement extends GeneralEntityBean implements Serializable {
 	private Integer originalCount;
 
 	@Column(nullable=false)
-	private ExpireType expireType = ExpireType.DEFAULT;
+	private ExpireType expireType = ExpireType.NEVER;
 	
 	@DateTimeFormat(style="SS")
 	@Column(nullable=true)

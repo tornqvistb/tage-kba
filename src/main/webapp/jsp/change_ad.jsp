@@ -175,9 +175,9 @@
 				<label for="5086c4a3b2945">Typ av avpublicering <em>(obligatoriskt)</em> <strong><form:errors path="expireType"/></strong></label>
 				<form:select id="5086c4a3b2945" path="expireType">
 					<form:option value="">Välj typ av avpublicering...</form:option>
+					<form:option value="<%= se.goteborg.retursidan.model.entity.Advertisement.ExpireType.NEVER%>">Publicerad tills vidare</form:option>
 					<form:option value="<%= se.goteborg.retursidan.model.entity.Advertisement.ExpireType.DEFAULT%>">Enligt standardvärde (efter ${config.adExpireTime} dagar)</form:option>
 					<form:option value="<%= se.goteborg.retursidan.model.entity.Advertisement.ExpireType.FIXED_DATE%>">Ett visst datum</form:option>
-					<form:option value="<%= se.goteborg.retursidan.model.entity.Advertisement.ExpireType.NEVER%>">Publicerad tills vidare</form:option>
 				</form:select>
 			</div>
 			<div id="expireDate" class="medium col col-2 mandatory <%= bindingResult.hasFieldErrors("expireDateString") ? "error" : "" %>">
